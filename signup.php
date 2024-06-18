@@ -345,10 +345,7 @@ if (isset($_POST['Registrar'])) {
 }
 
 function RegistrarAluno() {
-    //Registar Aluno e colocar para a base de dados
-    print '<script>alert("Script Registo")</script>';
-    print '<script>alert("Script Sucesso!!!")</script>';
-    print '<script>alert("Fechar")</script>';
+    //Registar Aluno e colocar para a base de dados   
 }
 
 ?>
