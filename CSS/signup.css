@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-position: center;
+    background-image: url("../Media/Background.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background-image 2s ease-in-out;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 50px;
+    opacity: 0.92;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 1000px;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+}
+
+h2:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.7s ease-in-out;
+}
+
+h2:not(:hover) {
+    transform: scale(1);
+    transition: 0.7s ease-out;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #e9ecef;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007bff;
+    background-color: #ffffff;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+}
+
+button:not(:hover) {
+    transform: scale(1);
+    transition: 0.3s ease-out;
+}
+
+
+/* Mobile responsiveness */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    .form-group input,
+    .form-group select {
+        padding: 10px;
+    }
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
