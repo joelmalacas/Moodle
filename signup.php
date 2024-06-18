@@ -346,6 +346,7 @@ if (isset($_POST['Registrar'])) {
 
 function RegistrarAluno() {
     //Registar Aluno e colocar para a base de dados   
+    //https://github.com/joelmalacas/Teste
 }
 
 ?>
