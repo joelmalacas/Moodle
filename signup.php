@@ -341,7 +341,6 @@
 </html>
 
 <?php
-
 if (isset($_POST['Registrar'])) {
     RegistrarAluno();
 }
@@ -349,5 +348,4 @@ if (isset($_POST['Registrar'])) {
 function RegistrarAluno() {
     //Registar Aluno e colocar para a base de dados   
 }
-
 ?>
