@@ -342,8 +342,6 @@
 
 <?php
 
-use Automattic\WooCommerce\Admin\API\Reports\SqlQuery;
-
 if (isset($_POST['Registrar'])) {
     RegistrarAluno();
 }
