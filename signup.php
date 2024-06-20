@@ -360,8 +360,48 @@ function RegistrarAluno() {
         print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
     }
 
-    //Declarar as valor das variaveis para a base de dados
-    $id = 
+    // Dados do aluno
+    $nome = $_POST['name'];
+    $email = $_POST['email'];
+    $passe = $_POST['password'];
+    $telemovel = $_POST['phone'];
+    $morada = $_POST['address'];
+    $codPostal = $_POST['postalcode'];
+
+    // Datas no formato "dia-mês-ano"
+    $DataNascimento = $_POST['birthdate'];
+    $DataValidadeDocumento = $_POST['idexpiry'];
+    $DataConta = date('Y-m-d');
+
+    // Converter datas para "ano-mês-dia"
+    $DataNascimento = DateTime::createFromFormat('d-m-Y', $DataNascimento)->format('Y-m-d');
+    $DataValidadeDocumento = DateTime::createFromFormat('d-m-Y', $DataValidadeDocumento)->format('Y-m-d');
+
+    $nacionalidade = $_POST['nacionalidades'];
+    $naturalidade = $_POST['birthplace'];
+    $genero = $_POST['gender'];
+    $PortadorDocumento = $_POST['transporte'];
+    $NumeroDocumento = $_POST['idnumber'];
+    $contribuinte = $_POST['taxnumber'];
+    $habilitacao = $_POST['habilitacao'];
+    $situacao_profissional = $_POST['employee'];
+    $Empresa = $_POST['employer'];
+    $estado = 'Offline';
     
+
+    // Query SQL para inserir dados
+    $sql = "INSERT INTO aluno (nome, email, passe, telemovel, morada, codPostal, DataNascimento, nacionalidade, naturalidade, genero, PortadorDocumento, NumeroDocumento, DataValidadeDocumento, contribuinte, habilitacao, situacao_profissional, Empresa, DataConta, estado) 
+    VALUES ('$nome', '$email', '$passe', '$telemovel', '$morada', '$codPostal', '$DataNascimento', '$nacionalidade', '$naturalidade', '$genero', '$PortadorDocumento', '$NumeroDocumento', '$DataValidadeDocumento', '$contribuinte', '$habilitacao', '$situacao_profissional', '$Empresa', '$DataConta', '$estado')";
+
+    // Executa a query e verifica se foi bem-sucedida
+    if ($conn->query($sql) === TRUE) {
+        echo "Novo registro inserido com sucesso";
+    } else {
+        echo "Erro: " . $sql . "<br>" . $conn->error;
+    }
+
+    // Fecha a conexão
+    $conn->close();
+
 }
 ?>
