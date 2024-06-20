@@ -21,7 +21,7 @@
         <form method="post" action="RegistarAluno.php">
             <div class="form-group">
                 <label for="name">Nome completo</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="nome" name="nome" required>
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label for="nationality">Nacionalidade</label>
-                <select id="nacionalidades">
+                <select id="nacionalidades" name="nacionalidades" required>
             <optgroup label="Europeias">
                 <option value="pt">Português(a)</option>
                 <option value="es">Espanhol(a)</option>
