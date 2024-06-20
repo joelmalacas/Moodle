@@ -346,6 +346,8 @@ if (isset($_POST['Registrar'])) {
 }
 
 function RegistrarAluno() {
-    //Registar Aluno e colocar para a base de dados   
+    //Registar Aluno e colocar para a base de dados 
+    require '../Moodle/Scripts/bd.php';
+    
 }
 ?>
