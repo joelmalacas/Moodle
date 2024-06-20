@@ -341,13 +341,28 @@
 </html>
 
 <?php
+
+use Automattic\WooCommerce\Admin\API\Reports\SqlQuery;
+
 if (isset($_POST['Registrar'])) {
     RegistrarAluno();
 }
 
 function RegistrarAluno() {
     //Registar Aluno e colocar para a base de dados 
-    require '../Moodle/Scripts/bd.php';
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "moodle";
+
+    $conn = mysqli_connect($servername, $username, $password, $database);
+
+    if ($conn == false){
+        echo "Error Trying Connect to Database Server\n";
+        print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
+    }
+
+    $commando = '';
     
 }
 ?>
