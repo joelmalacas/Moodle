@@ -295,7 +295,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="Transporte">É transportador de:</label>
+                <label for="Transporte">Portador de:</label>
                 <select name="transporte" id="transporte" onchange="Documentos()" required>
                     <option value="">-- Selecione uma opção --</option>
                     <option value="CC">Cartão Cidadão</option>
@@ -318,17 +318,19 @@
                 <label for="education">Habilitação</label>
                 <select id="habilitacao" name="habilitacao" required>
                     <option value="">-- Selecione opção --</option>
+                    <option value="9Ano">9º Ano</option>
                     <option value="12Ano">12º Ano</option>
                     <option value="License">Licenciatura</option>
                     <option value="Mestre">Mestrado</option>
+                    <option value="Doutoramento">Doutoramento</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="employmentoption">Empregabilidade</label>
+                <label for="employmentoption">Situação Profissional:</label>
                 <select id="employee" name="employee" onchange="CriaElementos()" required>
                     <option value="">-- Selecione opção --</option>
-                    <option value="yes">Sim</option>
-                    <option value="no">Não</option>
+                    <option value="yes">Empregado</option>
+                    <option value="no">Desempregado</option>
                 </select>
             </div>
             <button type="submit" id="Registrar">Registar</button>
