@@ -360,7 +360,8 @@ function RegistrarAluno() {
         print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
     }
 
-    $commando = '';
+    //Declarar as valor das variaveis para a base de dados
+    $id = 
     
 }
 ?>
