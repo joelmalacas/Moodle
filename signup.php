@@ -18,10 +18,10 @@
             <img src="../Moodle/Media/logo.png" alt="DarwinSchool Logo">
         </div>
         <h2 onclick="window.location.reload()">Criar Conta Moodle</h2>
-        <form method="post" action="RegistarAluno.php">
+        <form method="post">
             <div class="form-group">
-                <label for="name">Nome completo</label>
-                <input type="text" id="nome" name="nome" required>
+                <label for="nome">Nome completo</label>
+                <input type="text" name="nome" id="nome" required>
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
@@ -334,10 +334,83 @@
                     <option value="no">Desempregado</option>
                 </select>
             </div>
-            <button type="submit" id="Registrar">Registar</button>
+            <button type="submit" id="Registar" name="Registar">Registar</button>
         </form>
     </div>
 
 </body>
 
 </html>
+
+<?php
+
+if (isset($_POST['Registar'])){
+    criaConta();
+} else {
+    print '<script>alert("Não encontramos o botão")</script>';
+}
+
+
+function criaConta() {
+    // Conexão com o banco de dados (substitua com suas credenciais)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "moodle";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Verifica a conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+// Verifica se o formulário foi submetido
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recupera os valores do formulário
+    $nome = $_POST['nome'] ;
+    $email = $_POST['email'];
+    $passe = $_POST['password'];
+    $telemovel = $_POST['phone'];
+    $morada = $_POST['address'];
+    $codPostal = $_POST['postalcode'];
+    $DataNascimento = $_POST['birthdate'];
+    $nacionalidade = $_POST['nacionalidades'];
+    $naturalidade = $_POST['birthplace'];
+    $genero = $_POST['gender'];
+    $PortadorDocumento = $_POST['transporte'];
+    $NumeroDocumento = $_POST['idnumber'];
+    $DataValidadeDocumento = $_POST['idexpiry'];
+    $contribuinte = $_POST['taxnumber'];
+    $habilitacao = $_POST['habilitacao'];
+    $situacao_profissional = $_POST['employee'];
+    $Empresa = isset($_POST['employer']) ? $_POST['employer'] : null; // Se não estiver definido, será nulo
+    $DataConta = isset($_POST['accountdate']) ? $_POST['accountdate'] : null; // Se não estiver definido, será nulo
+    $estado = "ativo"; // Defina o estado conforme necessário
+
+    // Prepara a declaração SQL
+    $stmt = $conn->prepare("INSERT INTO aluno (nome, email, passe, telemovel, morada, codPostal, DataNascimento, nacionalidade, naturalidade, genero, PortadorDocumento, NumeroDocumento, DataValidadeDocumento, contribuinte, habilitacao, situacao_profissional, Empresa, DataConta, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    // Verifica se a preparação da declaração foi bem-sucedida
+    if ($stmt === false) {
+        die('Erro na preparação da declaração SQL: ' . $conn->error);
+    }
+
+    // Vincula os parâmetros
+    $stmt->bind_param("sssssssssssssssssss", $nome, $email, $passe, $telemovel, $morada, $codPostal, $DataNascimento, $nacionalidade, $naturalidade, $genero, $PortadorDocumento, $NumeroDocumento, $DataValidadeDocumento, $contribuinte, $habilitacao, $situacao_profissional, $Empresa, $DataConta, $estado);
+
+    // Executa a declaração
+    if ($stmt->execute()) {
+        echo '<script>alert("Novo registro inserido com sucesso");</script>';
+    } else {
+        echo '<script>alert("Erro ao inserir registro: ' . $stmt->error . '");</script>';
+    }
+
+    // Fecha a declaração
+    $stmt->close();
+}
+
+// Fecha a conexão
+$conn->close();
+}
+?>

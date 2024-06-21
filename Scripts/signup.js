@@ -86,6 +86,7 @@ function CriaElementos() {
         // Criar botão "Registar" apenas
         const button = document.createElement('button');
         button.setAttribute('type', 'submit');
+        button.setAttribute('name', 'Registar');
         button.textContent = 'Registar';
 
         // Adicionar botão ao formulário
