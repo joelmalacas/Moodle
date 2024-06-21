@@ -1,0 +1,104 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Estilos gerais */
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../Media/Background.jpg');
+    background-size: 100vw 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-image 1.5s ease-in-out;
+}
+
+.login-container {
+    background-color: #c0c0c0;
+    opacity: 0.9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 5px;
+    /* Para garantir que o padding não afete a largura total */
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    /* Espaçamento opcional entre o último input e o botão */
+}
+
+a {
+    margin-top: 30px;
+    text-decoration: none;
+}
+
+a:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+    transition: 0.7s ease-in-out;
+}
+
+a:not(:hover) {
+    transform: scale(1);
+    transition: 0.7s ease-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transition: 0.7s ease-in;
+}
+
+button:not(:hover) {
+    background-color: #007bff;
+    transition: 0.7s ease-out;
+}
