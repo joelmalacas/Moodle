@@ -38,58 +38,27 @@ function Documentos() {
 
 function CriaElementos() {
     const employee = document.getElementById("employee");
-    const form = document.querySelector('form');
+    const form = document.querySelector(".RegistoMoodle");
 
-    // Remover elementos existentes se houver
-    const existingDiv = form.querySelector('.form-group');
-    const existingButton = form.querySelector('button[type="submit"]');
 
-    if (existingDiv) {
-        form.removeChild(existingDiv);
-    }
-
-    if (existingButton) {
-        form.removeChild(existingButton);
-    }
-
-    // Verificar o valor selecionado em "employee"
     if (employee.value === "yes") {
-        // Criar div.form-group
-        const divFormGroup = document.createElement('div');
-        divFormGroup.classList.add('form-group');
+        const EmpresaLabel = document.createElement("label");
+        const EmpresaInput = document.createElement("input");
+        EmpresaLabel.textContent = 'Nome da Empresa';
+        EmpresaInput.setAttribute('type', 'text');
+        EmpresaInput.setAttribute('name', 'employer');
 
-        // Criar label
-        const label = document.createElement('label');
-        label.setAttribute('for', 'employer');
-        label.textContent = 'Nome Empresa';
-
-        // Criar input
-        const input = document.createElement('input');
-        input.setAttribute('type', 'text');
-        input.setAttribute('id', 'employer');
-        input.setAttribute('name', 'employer');
-        input.setAttribute('required', '');
-
-        // Adicionar label e input a div.form-group
-        divFormGroup.appendChild(label);
-        divFormGroup.appendChild(input);
-
-        // Criar botão "Registar"
-        const button = document.createElement('button');
-        button.setAttribute('type', 'submit');
-        button.textContent = 'Registar';
-
-        // Adicionar div.form-group e botão ao formulário
-        form.appendChild(divFormGroup);
-        form.appendChild(button);
-    } else if (employee.value === "no" || employee.value === "") {
-        // Criar botão "Registar" apenas
-        const button = document.createElement('button');
-        button.setAttribute('type', 'submit');
-        button.setAttribute('name', 'Registar');
-        button.textContent = 'Registar';
-
-        // Adicionar botão ao formulário
-        form.appendChild(button);
+        form.appendChild(EmpresaLabel);
+        form.appendChild(EmpresaInput);
     }
+
+    // Criar botão "Registar"
+    const button = document.createElement('button');
+    button.setAttribute('type', 'submit');
+    button.setAttribute('name', 'Registar');
+    button.setAttribute('id', 'Registar');
+    button.textContent = 'Registar';
+
+    // Adicionar botão ao formulário
+    form.appendChild(button);
 }
