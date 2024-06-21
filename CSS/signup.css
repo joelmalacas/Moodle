@@ -42,6 +42,17 @@ h2 {
     color: #333;
 }
 
+h2:hover {
+    transform: scale(1.1);
+    transition: 0.7s ease-in;
+    cursor: pointer;
+}
+
+h2:not(:hover) {
+    transform: scale(1);
+    transition: 0.7s ease-out;
+}
+
 label {
     display: block;
     margin-bottom: 10px;
