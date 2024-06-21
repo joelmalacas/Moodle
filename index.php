@@ -1,3 +1,7 @@
+<?php
+    require '../Moodle/Scripts/valida.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
