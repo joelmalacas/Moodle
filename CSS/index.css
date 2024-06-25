@@ -51,6 +51,17 @@ header h1 {
     font-size: 24px;
 }
 
+header h1:hover {
+    transform: scale(1.1);
+    transition: 0.7s ease-in;
+    cursor: pointer;
+}
+
+header h1:not(:hover) {
+    transform: scale(1);
+    transition: 0.7s ease-out;
+}
+
 
 /* Estilo da navegação */
 
@@ -84,6 +95,15 @@ nav ul li button {
 nav ul li button:hover {
     background-color: #0056b3;
     border-radius: 8px;
+    transform: scale(1.1);
+    transition: 0.7s ease-in;
+}
+
+nav ul li button:not(:hover) {
+    background-color: #007bff;
+    border-radius: 8px;
+    transform: scale(1);
+    transition: 0.7s ease-out;
 }
 
 
