@@ -52,9 +52,11 @@
             }
             if (isset($_POST['Perfil'])){
                 echo '<script>alert("Meu Perfil")</script>';
+                MeuPerfil();
             }
             if (isset($_POST['Disciplina'])){
                 echo '<script>alert("Minhas Disciplinas")</script>';
+                Disciplinas();
             }
             if (isset($_POST['Logout'])){
                 StatusUpdate($_SESSION["user_email"]);
