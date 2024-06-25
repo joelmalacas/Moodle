@@ -112,4 +112,14 @@ function StatusUpdate($User) {
     // Fecha a conexão
     $conn->close();
 }
+
+
+function MeuPerfil() {
+    //Form com o meu Perfil    
+}
+
+function Disciplinas() {
+    // Mostrar Disciplinas inscritas
+}
+
 ?>
