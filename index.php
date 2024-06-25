@@ -17,8 +17,8 @@
     <header>
         <div class="logo">
             <img src="../Moodle/Media/logo.png" alt="DarwinSchool Logo">
-            <h1>DarwinSchool</h1>
-        </div>
+           <h1>DarwinSchool</h1>
+        </div>  
         <nav>
             <ul>
                 <li>
