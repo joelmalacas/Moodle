@@ -1,5 +1,5 @@
 <?php
-    require '../Moodle/Scripts/bd.php';
+    require '../Moodle/Scripts/valida.php';
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +57,9 @@
                 echo '<script>alert("Minhas Disciplinas")</script>';
             }
             if (isset($_POST['Logout'])){
-                $User = $_SESSION["autenticacao"];
-                StatusUpdate($User);
+                StatusUpdate($_SESSION["user_email"]);
                 require '../Moodle/Scripts/logout.php';
+                require '../Moodle/Scripts/valida.php';
             }
         ?>
     </main>
