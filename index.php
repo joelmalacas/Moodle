@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="../Moodle/CSS/index.css">
     <title>DarwinSchool - Index</title>
     <link rel="shortcut icon" href="../Moodle/Media/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <body>
     <header>
         <div class="logo">
@@ -23,22 +21,22 @@
             <ul>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Pprincipal">Página Principal</button>
+                        <button type="submit" name="Pprincipal"><i class="fa-solid fa-house"></i> Página Principal</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Perfil">Meu Perfil</button>
+                        <button type="submit" name="Perfil"><i class="fas fa-user"></i> Meu Perfil</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Disciplina">Minhas Disciplinas</button>
+                        <button type="submit" name="Disciplina"><i class="fa-solid fa-book"></i> Minhas Disciplinas</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Logout">Encerrar Sessão</button>
+                        <button type="submit" name="Logout"><i class="fa-solid fa-right-from-bracket"></i> Encerrar Sessão</button>
                     </form>
                 </li>
             </ul>
