@@ -53,11 +53,9 @@
                 header("Location: " . $url);
             }
             if (isset($_POST['Perfil'])){
-                echo '<script>alert("Meu Perfil")</script>';
                 MeuPerfil();
             }
             if (isset($_POST['Disciplina'])){
-                echo '<script>alert("Minhas Disciplinas")</script>';
                 Disciplinas();
             }
             if (isset($_POST['Logout'])){
@@ -119,11 +117,27 @@ function StatusUpdate($User) {
 
 
 function MeuPerfil() {
-    //Form com o meu Perfil    
+    //Form com o meu Perfil
+    print '<form class="perfil-form" method="POST" action="update_perfil.php">
+        <h2>Meu Perfil</h2>
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value="' . $_SESSION['user_email'] . '" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="' . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') . '" required>
+        </div>
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" value="' . htmlspecialchars($_SESSION['telefone'], ENT_QUOTES, 'UTF-8') . '" required>
+        </div>
+    </form>';
 }
 
 function Disciplinas() {
     // Mostrar Disciplinas inscritas
+    print '<h1>Minhas Disciplinas</h1>';
 }
 
 ?>
