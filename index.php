@@ -48,14 +48,18 @@
     </header>
     <main class="main-content">
         <?php
+            CursoCard();
             if (isset($_POST['Pprincipal'])){
                 $url = "index.php";
                 header("Location: " . $url);
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
             }
             if (isset($_POST['Perfil'])){
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
                 MeuPerfil();
             }
             if (isset($_POST['Disciplina'])){
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
                 Disciplinas();
             }
             if (isset($_POST['Logout'])){
@@ -164,6 +168,35 @@ function MeuPerfil() {
 function Disciplinas() {
     // Mostrar Disciplinas inscritas
     print '<h1>Minhas Disciplinas</h1>';
+}
+
+function CursoCard() {
+    print '
+    <h1>Cursos Disponíveis</h1>
+   <div class="course-container">
+        <div class="course-card">
+            <div class="course-image">
+                <img src="https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg" alt="Curso de Programação">
+            </div>
+            <div class="course-info">
+                <h3>Curso de Programação</h3>
+                <p>Aprenda os fundamentos da programação com este curso abrangente e prático.</p>
+                <p><strong>Preço: </strong> 199.99 €</p>
+                <button class="buy-button"><i class="fa-solid fa-cart-shopping"></i> Comprar Curso</button>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-image">
+                <img src="https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg" alt="Curso de Design">
+            </div>
+            <div class="course-info">
+                <h3>Curso de Design</h3>
+                <p>Desenvolva suas habilidades em design gráfico e web design.</p>
+                <p><strong>Preço: </strong> 149.99 €</p>
+                <button class="buy-button"><i class="fa-solid fa-cart-shopping"></i> Comprar Curso</button>
+            </div>
+        </div>
+    </div>';
 }
 
 ?>
