@@ -1,5 +1,5 @@
 CREATE TABLE aluno (
-    id INT AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     email VARCHAR(50),
     passe VARCHAR(20),
@@ -18,8 +18,7 @@ CREATE TABLE aluno (
     situacao_profissional VARCHAR(20),
     Empresa VARCHAR(50),
     DataConta DATE,
-    estado VARCHAR(10),
-    PRIMARY KEY (id, email)
+    estado VARCHAR(10)
 );
 
 CREATE TABLE cursos (
@@ -41,11 +40,20 @@ CREATE TABLE inscricoes (
     curso_id INT NOT NULL,
     aluno_id INT NOT NULL,
     FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE,
-    FOREIGN KEY (aluno_id) REFERENCES alunos(id) ON DELETE CASCADE
+    FOREIGN KEY (aluno_id) REFERENCES aluno(id) ON DELETE CASCADE
+);
+
+CREATE TABLE notas (
+    id SERIAL PRIMARY KEY,
+    disciplina_id INT NOT NULL,
+    aluno_id INT NOT NULL,
+    nota DECIMAL(4, 2) NOT NULL,
+    FOREIGN KEY (disciplina_id) REFERENCES disciplinas(id) ON DELETE CASCADE,
+    FOREIGN KEY (aluno_id) REFERENCES aluno(id) ON DELETE CASCADE
 );
 
 
-//Inserts
+//Inserts 
 
 -- Inserir cursos
 INSERT INTO cursos (nome, descricao) VALUES ('Engenharia de Software', 'Curso de Engenharia de Software');
@@ -61,12 +69,20 @@ INSERT INTO aluno (nome, email) VALUES ('João Silva', 'joao.silva@example.com')
 INSERT INTO aluno (nome, email) VALUES ('Maria Souza', 'maria.souza@example.com');
 
 -- Inserir inscrições
-INSERT INTO inscricoes (curso_id, email) VALUES (1, 1);
-INSERT INTO inscricoes (curso_id, email) VALUES (2, 2);
+INSERT INTO inscricoes (curso_id, aluno_id) VALUES (1, 1);
+INSERT INTO inscricoes (curso_id, aluno_id) VALUES (2, 2);
 
-Consultas para Mostrar Alunos Inscritos em um Curso
+-- Inserir notas
+INSERT INTO notas (disciplina_id, aluno_id, nota) VALUES (1, 1, 8.5);
+INSERT INTO notas (disciplina_id, aluno_id, nota) VALUES (2, 1, 9.0);
+INSERT INTO notas (disciplina_id, aluno_id, nota) VALUES (3, 2, 7.5);
 
-SELECT a.nome, a.email
-FROM alunos a
-JOIN inscricoes i ON a.id = i.email
+
+Consultas para Mostrar Alunos Inscritos em um Curso e Suas Notas
+
+SELECT a.nome, a.email, d.nome AS disciplina, n.nota
+FROM aluno a
+JOIN inscricoes i ON a.id = i.aluno_id
+JOIN disciplinas d ON i.curso_id = d.curso_id
+JOIN notas n ON a.id = n.aluno_id AND d.id = n.disciplina_id
 WHERE i.curso_id = 1;  -- Substitua 1 pelo ID do curso desejado
