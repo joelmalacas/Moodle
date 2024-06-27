@@ -19,7 +19,7 @@
     <header>
         <div class="logo">
             <img src="../Moodle/Media/logo.png" alt="DarwinSchool Logo">
-           <h1 onclick="window.location.reload()">DarwinSchool</h1>
+           <?php print '<h1 onclick="window.location.reload()">Olá '. $_SESSION['user_email'] .'👋</h1>'?>
         </div>  
         <nav>
             <ul>
