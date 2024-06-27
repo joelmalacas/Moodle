@@ -1,0 +1,72 @@
+CREATE TABLE aluno (
+    id INT AUTO_INCREMENT,
+    nome VARCHAR(100),
+    email VARCHAR(50),
+    passe VARCHAR(20),
+    telemovel VARCHAR(15),
+    morada VARCHAR(50),
+    codPostal VARCHAR(10),
+    DataNascimento DATE,
+    nacionalidade VARCHAR(20),
+    naturalidade VARCHAR(30),
+    genero VARCHAR(20),
+    PortadorDocumento VARCHAR(30),
+    NumeroDocumento VARCHAR(20),
+    DataValidadeDocumento DATE,
+    contribuinte VARCHAR(9),
+    habilitacao VARCHAR(15),
+    situacao_profissional VARCHAR(20),
+    Empresa VARCHAR(50),
+    DataConta DATE,
+    estado VARCHAR(10),
+    PRIMARY KEY (id, email)
+);
+
+CREATE TABLE cursos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT
+);
+
+CREATE TABLE disciplinas (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    curso_id INT NOT NULL,
+    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
+);
+
+CREATE TABLE inscricoes (
+    id SERIAL PRIMARY KEY,
+    curso_id INT NOT NULL,
+    aluno_id INT NOT NULL,
+    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE,
+    FOREIGN KEY (aluno_id) REFERENCES alunos(id) ON DELETE CASCADE
+);
+
+
+//Inserts
+
+-- Inserir cursos
+INSERT INTO cursos (nome, descricao) VALUES ('Engenharia de Software', 'Curso de Engenharia de Software');
+INSERT INTO cursos (nome, descricao) VALUES ('Ciência da Computação', 'Curso de Ciência da Computação');
+
+-- Inserir disciplinas
+INSERT INTO disciplinas (nome, descricao, curso_id) VALUES ('Algoritmos', 'Disciplina de Algoritmos', 1);
+INSERT INTO disciplinas (nome, descricao, curso_id) VALUES ('Banco de Dados', 'Disciplina de Banco de Dados', 1);
+INSERT INTO disciplinas (nome, descricao, curso_id) VALUES ('Programação', 'Disciplina de Programação', 2);
+
+-- Inserir alunos
+INSERT INTO aluno (nome, email) VALUES ('João Silva', 'joao.silva@example.com');
+INSERT INTO aluno (nome, email) VALUES ('Maria Souza', 'maria.souza@example.com');
+
+-- Inserir inscrições
+INSERT INTO inscricoes (curso_id, aluno_id) VALUES (1, 1);
+INSERT INTO inscricoes (curso_id, aluno_id) VALUES (2, 2);
+
+Consultas para Mostrar Alunos Inscritos em um Curso
+
+SELECT a.nome, a.email
+FROM alunos a
+JOIN inscricoes i ON a.id = i.aluno_id
+WHERE i.curso_id = 1;  -- Substitua 1 pelo ID do curso desejado
