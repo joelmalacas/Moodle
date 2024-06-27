@@ -117,20 +117,46 @@ function StatusUpdate($User) {
 
 
 function MeuPerfil() {
-    //Form com o meu Perfil
-    print '<form class="perfil-form" method="POST" action="update_perfil.php">
+    // Base de Dados
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "moodle_accounts";
+        
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Erro ao tentar conectar ao servidor de banco de dados: " . $conn->connect_error);
+    }
+
+    // Consulta segura usando prepared statement
+    $sql = "SELECT name, email, phone, Data_criacao FROM aluno WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $_SESSION["user_email"]);
+    $stmt->execute();
+    $stmt->bind_result($NomeCompleto, $email, $phone, $DataCriacao);
+    $stmt->fetch();
+    $stmt->close();
+    $conn->close();
+
+    // Formulário com o perfil
+    echo '<form class="perfil-form" method="POST" action="update_perfil.php">
         <h2>Meu Perfil</h2>
         <div class="form-group">
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" value="' . $_SESSION['user_email'] . '" required>
+            <input type="text" id="nome" name="nome" value="' . htmlspecialchars($NomeCompleto, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="' . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') . '" required>
+            <input type="email" id="email" name="email" value="' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
         <div class="form-group">
             <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" value="' . htmlspecialchars($_SESSION['telefone'], ENT_QUOTES, 'UTF-8') . '" required>
+            <input type="tel" id="telefone" name="telefone" value="' . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . '" readonly required>
+        </div>
+        <div class="form-group">
+            <label for"DataCriacao">Conta criada:</label>
+            <input type="date" id="DataCriacao" name="DataCriacao" value="' . htmlspecialchars($DataCriacao, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
     </form>';
 }

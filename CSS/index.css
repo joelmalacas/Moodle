@@ -119,7 +119,7 @@ nav ul li button:not(:hover) {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 80%;
     margin: 40px auto;
 }
 
@@ -127,6 +127,18 @@ nav ul li button:not(:hover) {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
+    text-align: center;
+}
+
+.perfil-form h2:hover {
+    transform: scale(1.1);
+    transition: 0.7s ease-in;
+    cursor: pointer;
+}
+
+.perfil-form h2:not(:hover) {
+    transform: scale(1);
+    transition: 0.7s ease-out;
 }
 
 .form-group {
@@ -148,12 +160,12 @@ nav ul li button:not(:hover) {
 }
 
 .form-group input:focus {
-    border-color: #4CAF50;
+    border-color: #007bff;
     outline: none;
 }
 
 button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -164,7 +176,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
 }
 
 
