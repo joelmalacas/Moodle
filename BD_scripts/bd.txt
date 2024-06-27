@@ -61,12 +61,12 @@ INSERT INTO aluno (nome, email) VALUES ('João Silva', 'joao.silva@example.com')
 INSERT INTO aluno (nome, email) VALUES ('Maria Souza', 'maria.souza@example.com');
 
 -- Inserir inscrições
-INSERT INTO inscricoes (curso_id, aluno_id) VALUES (1, 1);
-INSERT INTO inscricoes (curso_id, aluno_id) VALUES (2, 2);
+INSERT INTO inscricoes (curso_id, email) VALUES (1, 1);
+INSERT INTO inscricoes (curso_id, email) VALUES (2, 2);
 
 Consultas para Mostrar Alunos Inscritos em um Curso
 
 SELECT a.nome, a.email
 FROM alunos a
-JOIN inscricoes i ON a.id = i.aluno_id
+JOIN inscricoes i ON a.id = i.email
 WHERE i.curso_id = 1;  -- Substitua 1 pelo ID do curso desejado
