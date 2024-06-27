@@ -173,7 +173,7 @@ function Disciplinas() {
 function CursoCard() {
     print '
     <h1>Cursos Disponíveis</h1>
-   <div class="course-container">
+    <div class="course-container">
         <div class="course-card">
             <div class="course-image">
                 <img src="https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg" alt="Curso de Programação">
