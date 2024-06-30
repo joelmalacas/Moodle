@@ -78,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              // Executa a query
             $stmt->execute();
        } else {
+            mysqli_close($conn);
             print '<script>alert("Já existe conta com este endereço e-mail");</script>';
             print '<script>window.location.href="index.php";</script>';
        }
