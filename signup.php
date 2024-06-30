@@ -59,8 +59,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':data_criacao', $data_criacao);
 
-        // Executa a query
-        $stmt->execute();
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "moodle_accounts";
+    
+        $conn = mysqli_connect($servername, $username, $password, $database);
+    
+        if ($conn == false){
+            echo "Error Trying Connect to Database Server\n";
+            print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
+        }
+
+       $verifica = 'select * from alunos where email = ' . $email;
+       $sql = mysqli_query($conn, $verifica) or die ("Erro: Base de dados");
+
+        if (mysqli_num_rows($sql) == 0) {
+             // Executa a query
+            $stmt->execute();
+       } else {
+            print '<script>alert("Já existe conta com este endereço e-mail");</script>';
+            print '<script>window.location.href="index.php";</script>';
+       }
 
        print '<script>alert("Registo efetuado com sucesso!!!");</script>';
        print '<script>window.location.href="../Moodle/login.html";</script>';
