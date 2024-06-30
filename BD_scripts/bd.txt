@@ -22,14 +22,14 @@ CREATE TABLE aluno (
 );
 
 CREATE TABLE cursos (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     preco MONEY,
     descricao TEXT
 );
 
 CREATE TABLE disciplinas (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
     curso_id INT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE disciplinas (
 );
 
 CREATE TABLE inscricoes (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     curso_id INT NOT NULL,
     aluno_id INT NOT NULL,
     pagamento VARCHAR(100),
@@ -47,7 +47,7 @@ CREATE TABLE inscricoes (
 );
 
 CREATE TABLE notas (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     disciplina_id INT NOT NULL,
     aluno_id INT NOT NULL,
     nota DECIMAL(4, 2) NOT NULL,
