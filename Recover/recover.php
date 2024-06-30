@@ -5,11 +5,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numero_quatro_digitos = mt_rand(1000, 9999); // Gerar Código
 
     // Credenciais da API do Mailjet
-    $api_key = 'bb6973848e1533938a38472090532822'; // Substitua pela sua chave de API
-    $api_secret = '51cb26f43484b4b05ceb0bbbbefbac4f'; // Substitua pelo seu segredo da API
+    $api_key = '0ba2306831835e689d7a7b9b2b079971'; // Substitua pela sua chave de API
+    $api_secret = '6c5a027fb4fc3f54688fc5e1528c3135'; // Substitua pelo seu segredo da API
 
     // Dados do e-mail
-    $from_email = 'joelmalacas@gmail.com'; // Substitua pelo seu endereço de e-mail
+    $from_email = 'estaslixada1999@gmail.com'; // Substitua pelo seu endereço de e-mail
     $from_name = 'Darwin School';
     $subject = 'Recuperação de Conta';
     $text = '<h1>Recuperação Password</h1>';
