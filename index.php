@@ -1,5 +1,5 @@
 <?php
-    require '../Moodle/Scripts/valida.php';
+    require '../Moodle/Scripts/bd.php';
 ?>
 
 <!DOCTYPE html>
