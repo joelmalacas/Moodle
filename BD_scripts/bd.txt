@@ -40,6 +40,8 @@ CREATE TABLE inscricoes (
     id SERIAL PRIMARY KEY,
     curso_id INT NOT NULL,
     aluno_id INT NOT NULL,
+    pagamento VARCHAR(100),
+    Data_Inscricao DATE,
     FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE,
     FOREIGN KEY (aluno_id) REFERENCES aluno(id) ON DELETE CASCADE
 );
