@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
         }
 
-       $verifica = 'select * from alunos where email = ' . $email;
+       $verifica = "SELECT * from aluno WHERE email = \"joelmalacas@gmail.com\";";
        $sql = mysqli_query($conn, $verifica) or die ("Erro: Base de dados");
 
         if (mysqli_num_rows($sql) == 0) {
