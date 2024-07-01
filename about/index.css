@@ -112,6 +112,7 @@ header nav ul li a:not(:hover) {
 
 .course-card img {
     width: 100%;
+    height: auto !important;
     border-radius: 10px 10px 0 0;
 }
 
