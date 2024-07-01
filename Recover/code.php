@@ -1,10 +1,15 @@
 <?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigo = $_POST["code"];
+
     if (isset($_POST['Confirma'])) {
-        if ($codigo === $_SESSION['numero_quatro_digitos']){
-            print '<script>alert("Código correto!")</script>';
+        if ($codigo === $_SESSION['numero_quatro_digitos']) {
+            echo '<script>alert("Código correto!")</script>';
         } else {
-            print '<script>alert("Código errado!")</script>';
+            echo '<script>alert("Código errado!")</script>';
         }
     }
+}
 ?>
