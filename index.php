@@ -144,7 +144,7 @@ function MeuPerfil() {
     $conn->close();
 
     // Formulário com o perfil
-    echo '<form class="perfil-form" method="POST" action="update_perfil.php">
+    echo '<form class="perfil-form" method="POST">
         <h2>Meu Perfil</h2>
         <div class="form-group">
             <label for="nome">Nome:</label>
@@ -161,6 +161,9 @@ function MeuPerfil() {
         <div class="form-group">
             <label for"DataCriacao">Conta criada:</label>
             <input type="date" id="DataCriacao" name="DataCriacao" value="' . htmlspecialchars($DataCriacao, ENT_QUOTES, 'UTF-8') . '" readonly required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary>
         </div>
     </form>';
 }
