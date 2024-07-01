@@ -27,6 +27,7 @@ if (strlen($passe) > 5 && $passe == $Repasse) {
     mysqli_query($conn, $atualiza) or die("Erro query base de dados");
     print '<script>alert("Password Atualizada com sucesso!");</script>';
     print '<script>window.location.href="http://localhost/Moodle"</script>';
+    $_SESSION['Recover_email'] == null;
 } else {
     print '<script>alert("A password não cumpre os parâmetros requisitados para renovar a password")</script>';
 }
