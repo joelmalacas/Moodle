@@ -3,6 +3,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
+    $_SESSION['Recover_email'] = $email;
 
     // Credenciais da API do Mailjet
     $api_key = '0ba2306831835e689d7a7b9b2b079971'; // Substitua pela sua chave de API
