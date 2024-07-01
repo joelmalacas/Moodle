@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-$_SESSION['numero_quatro_digitos'] = $numero_quatro_digitos;
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
 
@@ -10,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = '0ba2306831835e689d7a7b9b2b079971'; // Substitua pela sua chave de API
     $api_secret = '6c5a027fb4fc3f54688fc5e1528c3135'; // Substitua pelo seu segredo da API
     $numero_quatro_digitos = mt_rand(1000, 9999); // Gerar Código
+    $_SESSION['numero_quatro_digitos'] = $numero_quatro_digitos;
 
     // Dados do e-mail
     $from_email = 'estaslixada1999@gmail.com'; // Substitua pelo seu endereço de e-mail
