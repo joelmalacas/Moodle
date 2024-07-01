@@ -22,7 +22,7 @@ if ($conn == false){
 $passe = $_POST['Code'];
 $Repasse = $_POST['Recode'];
 
-if (strlen($passe) > 5 && $passe == $Repasse) {
+if (strlen($passe) >= 5 && $passe == $Repasse) {
     $atualiza = "UPDATE aluno set password = '". $passe ."' WHERE email = '". $_SESSION['Recover_email'] ."';";
     mysqli_query($conn, $atualiza) or die("Erro query base de dados");
     print '<script>alert("Password Atualizada com sucesso!");</script>';
