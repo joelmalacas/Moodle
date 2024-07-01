@@ -2,6 +2,11 @@
 
 session_start();
 
+if ($_SESSION['Recover_email'] == null) {
+    print '<script>alert("Insira o endereço e-mail");</script>';
+    print '<script>window.location.href="index.html";</script>';
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
