@@ -1,8 +1,11 @@
 <?php
+
+$numero_quatro_digitos = mt_rand(1000, 9999); // Gerar Código
+
+$_SESSION['numero_quatro_digitos'] = $numero_quatro_digitos;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
-
-    $numero_quatro_digitos = mt_rand(1000, 9999); // Gerar Código
 
     // Credenciais da API do Mailjet
     $api_key = '0ba2306831835e689d7a7b9b2b079971'; // Substitua pela sua chave de API
@@ -13,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $from_name = 'Darwin School';
     $subject = 'Recuperação de Conta';
     $text = '<h1>Recuperação Password</h1>';
-    $html = '<p>Insira o código'. $numero_quatro_digitos .'na plataforma para recuperar palavra-passe. Obrigado!</p>';
+    $html = '<p>Insira o código:  '. $numero_quatro_digitos .' na plataforma para recuperar palavra-passe. Obrigado!</p>';
 
     // Dados da requisição
     $postData = [
@@ -56,9 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verifica se o e-mail foi enviado com sucesso
     if ($info['http_code'] == 200) {
-        echo 'E-mail enviado com sucesso!';
+        echo '<script>alert("E-mail enviado com sucesso!");</script>';
+        print '<script>const mainContent = document.querySelector(".container"); mainContent.innerHTML = ""</script>';
+        print '<script>window.location.href="code.html"</script>';
     } else {
-        echo 'Erro ao enviar o e-mail: ' . $result;
+        echo '<script>alert("Erro ao enviar o e-mail: ' . $result . '")</script>';
     }
 }
 ?>
