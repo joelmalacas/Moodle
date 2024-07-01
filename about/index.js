@@ -17,6 +17,4 @@ window.onload = function() {
 
     // Muda a imagem de fundo a cada 10 segundos
     setInterval(changeBackgroundImage, 10000);
-
-    console.log('Funciton Onload');
 }
