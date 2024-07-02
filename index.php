@@ -174,32 +174,66 @@ function Disciplinas() {
 }
 
 function CursoCard() {
-    print '
+    echo '
     <h1>Cursos Disponíveis</h1>
-    <div class="course-container">
-        <div class="course-card">
-            <div class="course-image">
-                <img src="https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg" alt="Curso de Programação">
+    <div class="course-container">';
+    
+    // Array de cursos para exemplo. Substitua com dados reais ou dinâmicos.
+    $cursos = [
+        [
+            'id' => 1,
+            'nome' => 'Curso de Programação',
+            'disciplinas' => ['Introdução à Programação', 'Estruturas de Dados', 'Algoritmos'],
+            'descricao' => 'Aprenda os fundamentos da programação com este curso abrangente e prático.',
+            'preco' => '199.99 €',
+            'imagem' => 'https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg'
+        ],
+        [
+            'id' => 2,
+            'nome' => 'Curso de Design',
+            'disciplinas' => ['Photoshop', 'Illustrator', 'InDesign'],
+            'descricao' => 'Desenvolva suas habilidades em design gráfico e web design.',
+            'preco' => '149.99 €',
+            'imagem' => 'https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg'
+        ]
+        // Adicione mais cursos conforme necessário
+    ];
+
+    foreach ($cursos as $curso) {
+        echo "
+        <div class='course-card'>
+            <div class='course-image'>
+                <img src='{$curso['imagem']}' alt='{$curso['nome']}'>
             </div>
-            <div class="course-info">
-                <h3>Curso de Programação</h3>
-                <p>Aprenda os fundamentos da programação com este curso abrangente e prático.</p>
-                <p><strong>Preço: </strong> 199.99 €</p>
-                <button class="buy-button"><i class="fa-solid fa-cart-shopping"></i> Comprar Curso</button>
+            <div class='course-info'>
+                <h3>{$curso['nome']}</h3>
+                <p>{$curso['descricao']}</p>
+                <p><strong>Preço: </strong>{$curso['preco']}</p>
+                <form method='post' action=''>
+                    <input type='hidden' name='curso_id' value='{$curso['id']}'>
+                    <button class='buy-button' type='submit'><i class='fa-solid fa-cart-shopping'></i> Comprar Curso</button>
+                </form>
             </div>
         </div>
-        <div class="course-card">
-            <div class="course-image">
-                <img src="https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg" alt="Curso de Design">
-            </div>
-            <div class="course-info">
-                <h3>Curso de Design</h3>
-                <p>Desenvolva suas habilidades em design gráfico e web design.</p>
-                <p><strong>Preço: </strong> 149.99 €</p>
-                <button class="buy-button"><i class="fa-solid fa-cart-shopping"></i> Comprar Curso</button>
-            </div>
-        </div>
-    </div>';
+        ";
+    }
+    echo '</div>';
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['curso_id'])) {
+    $curso_id = $_POST['curso_id'];
+    $cursos = [
+        1 => 'Curso de Programação',
+        2 => 'Curso de Design'
+    ];
+
+    if (array_key_exists($curso_id, $cursos)) {
+        $curso_nome = $cursos[$curso_id];
+        echo "<script>alert('Você selecionou o curso: $curso_nome')</script>";
+        // Aqui você pode adicionar lógica adicional, como redirecionar para uma página de checkout ou registrar a compra.
+    } else {
+        echo "<script>alert('Curso não encontrado.')</script>";
+    }
 }
 
 ?>
