@@ -168,7 +168,28 @@ function MeuPerfil() {
 
 function Disciplinas() {
     // Mostrar Disciplinas inscritas
-    print '<h1>Minhas Disciplinas</h1>';
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "moodle_accounts";
+
+    $conn = mysqli_connect($servername, $username, $password, $database);
+
+    if ($conn == false){
+        echo "Error Trying Connect to Database Server\n";
+        print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
+    }
+
+    $sql = 'SELECT * from disciplinas;';
+    $resultado = mysqli_query($conn,$sql);
+
+    if (mysqli_num_rows($resultado) == 0){
+        print '<h1>Não tens Disciplinas</h1>';
+    } else {
+        print '<h1>As minhas Disciplinas</h1>';
+    }
+
+    mysqli_close($conn);
 }
 
 function CursoCard() {
