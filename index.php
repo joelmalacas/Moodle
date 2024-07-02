@@ -161,7 +161,7 @@ function MeuPerfil() {
             <input type="date" id="DataCriacao" name="DataCriacao" value="' . htmlspecialchars($DataCriacao, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
         <div class="form-group">
-            <button type="submit" value="Guardar" class="btn btn-primary">
+            <button type="submit" class="btn-primary">Guardar Alterações</button>
         </div>
     </form>';
 }

@@ -290,6 +290,10 @@ h1:hover {
     /* Sombra leve */
 }
 
+.btn-primary {
+    width: 100%;
+}
+
 
 /* Estilos para a imagem do curso */
 
@@ -350,6 +354,7 @@ ul li {
     color: #666;
     /* Cor do texto */
     margin-bottom: 5px;
+    margin-left: 20px;
     /* Espaço entre os itens */
 }
 
