@@ -21,7 +21,7 @@ session_start();
         $resultado = mysqli_query($conn, $verifica);
 
         if (mysqli_num_rows($resultado) == 0) {
-            print '<script>alert("O endereço e-mail inserido não existe\nPor favor tente novamente!!!")</script>';
+            print '<script>alert("Não existe nenhuma conta com endereço e-mail inserido\nPor favor tente novamente!!!")</script>';
             print '<script>window.location.href="index.html"</script>';
             mysqli_close($conn);
         }
