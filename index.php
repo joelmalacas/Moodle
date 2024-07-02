@@ -180,7 +180,7 @@ function Disciplinas() {
         print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
     }
 
-    $sql = 'SELECT * from disciplinas;';
+    $sql = 'SELECT * from disciplinas;'; //Precisa ser corrigido futuramente
     $resultado = mysqli_query($conn,$sql);
 
     if (mysqli_num_rows($resultado) == 0){
