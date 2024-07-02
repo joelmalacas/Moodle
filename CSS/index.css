@@ -269,3 +269,113 @@ h1:hover {
 .buy-button:hover {
     background-color: #45a049;
 }
+
+
+/* Estilos para o contêiner principal do curso */
+
+.Curso_desc {
+    max-width: 800px;
+    /* Largura máxima do contêiner */
+    margin: 0 auto;
+    /* Centraliza o contêiner na página */
+    padding: 20px;
+    /* Espaçamento interno */
+    background-color: #f9f9f9;
+    /* Cor de fundo */
+    border: 1px solid #ddd;
+    /* Borda fina cinza */
+    border-radius: 8px;
+    /* Cantos arredondados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra leve */
+}
+
+
+/* Estilos para a imagem do curso */
+
+.ImgCurso {
+    width: 100%;
+    /* Garante que a imagem ocupe toda a largura do contêiner */
+    height: auto;
+    /* Altura automática, para manter a proporção */
+    border-radius: 8px;
+    /* Cantos arredondados */
+    display: block;
+    /* Garante que a imagem se comporte como bloco */
+    margin-bottom: 15px;
+    /* Espaço abaixo da imagem */
+}
+
+
+/* Estilos para o nome do curso */
+
+.CursoNome {
+    font-size: 24px;
+    /* Tamanho da fonte */
+    color: #333;
+    /* Cor do texto */
+    margin-bottom: 10px;
+    /* Espaço abaixo do título */
+}
+
+
+/* Estilos para a descrição do curso */
+
+.Desc {
+    font-size: 16px;
+    /* Tamanho da fonte */
+    line-height: 1.6;
+    /* Altura da linha */
+    color: #666;
+    /* Cor do texto */
+    margin-bottom: 15px;
+    /* Espaço abaixo do parágrafo */
+}
+
+
+/* Estilos para a lista de disciplinas */
+
+ul {
+    list-style-type: none;
+    /* Remove os marcadores de lista */
+    padding: 0;
+    /* Remove o preenchimento interno */
+    margin: 0 0 15px;
+    /* Espaço abaixo da lista */
+}
+
+ul li {
+    font-size: 14px;
+    /* Tamanho da fonte dos itens da lista */
+    color: #666;
+    /* Cor do texto */
+    margin-bottom: 5px;
+    /* Espaço entre os itens */
+}
+
+
+/* Estilos para o botão de compra */
+
+.buy-button {
+    background-color: #007bff;
+    /* Cor de fundo do botão */
+    color: #fff;
+    /* Cor do texto do botão */
+    border: none;
+    /* Remove a borda */
+    padding: 10px 20px;
+    /* Preenchimento interno */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    border-radius: 5px;
+    /* Cantos arredondados */
+    cursor: pointer;
+    /* Cursor ao passar por cima */
+    transition: background-color 0.3s ease;
+    /* Transição suave de cor */
+}
+
+.buy-button:hover {
+    background-color: #0056b3;
+    /* Cor de fundo do botão ao passar por cima */
+}

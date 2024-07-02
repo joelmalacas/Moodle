@@ -69,9 +69,7 @@
             }
         ?>
     </main>
-    <footer>
-        <p>&copy; 2024 DarwinSchool. Todos os direitos reservados.</p>
-    </footer>
+    
     <script src="../Moodle/Scripts/index.js"></script>
 </body>
 </html>
@@ -163,7 +161,7 @@ function MeuPerfil() {
             <input type="date" id="DataCriacao" name="DataCriacao" value="' . htmlspecialchars($DataCriacao, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary>
+            <button type="submit" value="Guardar" class="btn btn-primary">
         </div>
     </form>';
 }
@@ -209,30 +207,55 @@ function CursoCard() {
                 <h3>{$curso['nome']}</h3>
                 <p>{$curso['descricao']}</p>
                 <p><strong>Preço: </strong>{$curso['preco']}</p>
-                <form method='post' action=''>
+                <form method='post'>
                     <input type='hidden' name='curso_id' value='{$curso['id']}'>
-                    <button class='buy-button' type='submit'><i class='fa-solid fa-cart-shopping'></i> Comprar Curso</button>
+                    <button class='view-button' type='submit' name='view_course'>Ver Detalhes</button>
                 </form>
             </div>
         </div>
         ";
     }
     echo '</div>';
-}
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['curso_id'])) {
-    $curso_id = $_POST['curso_id'];
-    $cursos = [
-        1 => 'Curso de Programação',
-        2 => 'Curso de Design'
-    ];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['view_course'])) {
+        $curso_id = (int)$_POST['curso_id']; // Garantir que $curso_id seja um inteiro
+        $curso_selecionado = null;
+    
+        foreach ($cursos as $curso) {
+            if ($curso['id'] === $curso_id) {
+                $curso_selecionado = $curso;
+                break;
+            }
+        }
+    
+        if ($curso_selecionado) {
+            $curso_nome = $curso_selecionado['nome'];
+            $curso_disciplinas = $curso_selecionado['disciplinas'];
+            $curso_descricao = $curso_selecionado['descricao'];
+            $curso_preco = $curso_selecionado['preco'];
+            $curso_imagem = $curso_selecionado['imagem'];
 
-    if (array_key_exists($curso_id, $cursos)) {
-        $curso_nome = $cursos[$curso_id];
-        echo "<script>alert('Você selecionou o curso: $curso_nome')</script>";
-        // Aqui você pode adicionar lógica adicional, como redirecionar para uma página de checkout ou registrar a compra.
-    } else {
-        echo "<script>alert('Curso não encontrado.')</script>";
+            print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+            print "<div class='Curso_desc'>
+                                <h1>Detalhes do Curso</h1>
+                                <img src='{$curso_imagem}' class='ImgCurso' alt='{$curso_nome}'>
+                                <h3 class='CursoNome'>{$curso_nome}</h3>
+                                <p class='Desc'>{$curso_descricao}</p>
+                                <p class='Desc'><strong>Preço: </strong>{$curso_preco}</p>
+                                <h3>Disciplinas</h3>
+                                <ul>";
+                                foreach ($curso_disciplinas as $disciplina) {
+                                    print "<li>{$disciplina}</li>";
+                                }
+                                print "</ul>
+                                <form method='post' action='comprar.php'>
+                                    <input type='hidden' name='curso_id' value='{$curso_id}'>
+                                    <button class='buy-button' type='submit'><i class='fa-solid fa-cart-shopping'></i> Comprar Curso</button>
+                                </form>
+                    </div>";
+        } else {
+            print "<script>alert('Curso não encontrado.')</script>";
+        }
     }
 }
 
