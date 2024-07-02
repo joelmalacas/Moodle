@@ -194,7 +194,6 @@ function CursoCard() {
             'preco' => '149.99 €',
             'imagem' => 'https://www.mundoconectado.com.br/wp-content/uploads/2022/05/capa-programacao.jpg'
         ]
-        // Adicione mais cursos conforme necessário
     ];
 
     foreach ($cursos as $curso) {
