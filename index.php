@@ -153,6 +153,10 @@ function MeuPerfil() {
             <input type="email" id="email" name="email" value="' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
         <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Inserir nova palavra-passe">
+        </div>
+        <div class="form-group">
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" value="' . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
@@ -161,9 +165,49 @@ function MeuPerfil() {
             <input type="date" id="DataCriacao" name="DataCriacao" value="' . htmlspecialchars($DataCriacao, ENT_QUOTES, 'UTF-8') . '" readonly required>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn-primary">Guardar Alterações</button>
+            <button type="submit" class="btn-primary" name="Guarda">Guardar Alterações</button>
         </div>
     </form>';
+
+}
+
+if (isset($_POST['Guarda'])) {
+    if (!empty($_POST['password'])) {
+        // Conectar ao banco de dados
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "moodle_accounts";
+
+        // Cria conexão
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        // Verifica conexão
+        if ($conn->connect_error) {
+            die("Erro ao conectar ao banco de dados: " . $conn->connect_error);
+        }
+
+        // Sanitize user input para evitar SQL Injection
+        $new_password = $conn->real_escape_string($_POST['password']);
+        
+        // Verifica se a sessão está iniciada (assumindo que você já iniciou a sessão em outro lugar)
+        session_start();
+        if (isset($_SESSION['user_email'])) {
+            $user_email = $conn->real_escape_string($_SESSION['user_email']);
+
+            // Query para atualizar a senha
+            $atualiza = "UPDATE aluno SET password = '{$new_password}' WHERE email = '{$user_email}'";
+
+            if ($conn->query($atualiza) === TRUE) {
+                echo '<script>alert("Alterações efetuadas com sucesso!")</script>';
+            } else {
+                echo "<script>alert('Erro: Ao atualizar a palavra-passe')</script>;";
+            }
+        }
+
+        // Fecha conexão
+        $conn->close();
+    }
 }
 
 function Disciplinas() {
