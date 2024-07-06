@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
-    header('location:' . "index.php");
+    header('location:' . "http://localhost/Moodle/login.html");
 }
 ?>
 
