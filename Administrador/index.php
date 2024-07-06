@@ -17,8 +17,6 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<script></script>
-
 <header>
         <div class="logo">
             <img src="../Media/logo.png" alt="DarwinSchool Logo">
@@ -28,17 +26,42 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             <ul>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Pprincipal" id="Pprincipal" class="active"><i class="fa-solid fa-house"></i> Página Principal</button>
+                        <button type="submit" name="Cria Curso" id="Pprincipal" class="active"><i class="fa-solid fa-plus"></i> Criar Curso</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Perfil" id="Perfil"><i class="fas fa-user"></i> Meu Perfil</button>
+                        <button type="submit" name="CriaDisciplina" id="Perfil"><i class="fa-solid fa-plus"></i> Cria disciplina</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Disciplina" id="Disciplina"><i class="fa-solid fa-book"></i> Minhas Disciplinas</button>
+                        <button type="submit" name="Cria Curso" id="Pprincipal" class="active"><i class="fa-solid fa-pen-to-square"></i> Editar Curso</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="POST" action="">
+                        <button type="submit" name="CriaDisciplina" id="Perfil"><i class="fa-solid fa-pen-to-square"></i> Editar disciplina</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="POST" action="">
+                        <button type="submit" name="CriaDisciplina" id="Perfil"><i class="fa-solid fa-minus"></i> Remover curso</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="POST" action="">
+                        <button type="submit" name="CriaDisciplina" id="Perfil"><i class="fa-solid fa-minus"></i> Remover disciplina</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="POST" action="">
+                        <button type="submit" name="Disciplina" id="Disciplina"><i class="fas fa-user"></i> Alunos</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="POST" action="">
+                        <button type="submit" name="Disciplina" id="Disciplina"><i class="fa-solid fa-address-card"></i> Inscrições</button>
                     </form>
                 </li>
                 <li>
@@ -51,7 +74,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
     </header>
     <main class="main-content">
         <?php
-            // Isset's e fuctions
+            // Isset's e functions
             if (isset($_POST['Logout'])) {
                 $_SESSION['LogAdmin'] = false;
                 header('location:' . "http://localhost/Moodle/index.php");
