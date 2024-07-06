@@ -41,6 +41,10 @@ body {
     margin: 0;
 }
 
+.sidebar header .logo h2:hover {
+    cursor: pointer;
+}
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;

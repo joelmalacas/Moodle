@@ -21,12 +21,12 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
 
 <body>
     <nav class="sidebar">
-    <header>
-        <div class="logo">
-            <img src="../Media/logo.png" alt="DarwinSchool Logo">
-            <?php print '<h2 onclick="window.location.reload()">Olá Admin 👋</h2>'?>
-        </div>  
-    </header>
+        <header>
+            <div class="logo" onclick="window.location.reload()">
+                <img src="../Media/logo.png" alt="DarwinSchool Logo">
+                <?php print '<h2>Olá Admin 👋</h2>'?>
+            </div>  
+        </header>
         <ul>
             <li>
                 <form method="POST" action="">
