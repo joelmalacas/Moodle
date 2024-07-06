@@ -2,6 +2,9 @@
 $User = $_POST["email"];
 $senha = $_POST["password"];
 
+$defaultUserAdmin  = 'eunice@gmail.com';
+$defaultPassAdmin = '12345';
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -17,27 +20,35 @@ if ($conn->connect_error) {
 
 session_start();
 
-// Preparar a consulta SQL usando consultas preparadas
-$stmt = $conn->prepare("SELECT * FROM aluno WHERE email = ? AND password = ?");
-$stmt->bind_param("ss", $User, $senha);
-$stmt->execute();
-$resultado = $stmt->get_result();
+$_SESSION['LogAdmin'] = false;
 
-// Verificar se a conta existe
-if ($resultado->num_rows <= 0) {
-    echo "<script>alert('As credenciais inseridas estão inválidas... Tente Novamente!!!'); window.location.href = 'login.html';</script>";
+if ($User == $defaultUserAdmin && $senha == $defaultPassAdmin) {
+    $_SESSION['LogAdmin'] = true;
+    header('location:' . "../Moodle/Administrador/index.php");
 } else {
-    StatusUpdate($User);
-    $_SESSION["autenticacao"] = true;
-    $_SESSION["user_email"] = $User;  // Corrigi a sessão para armazenar o email do usuário corretamente
-    $url = "index.php";
-    header("Location: " . $url);
-    exit();  // Adicionar exit após header para garantir que o script pare de executar
+    // Preparar a consulta SQL usando consultas preparadas
+    $stmt = $conn->prepare("SELECT * FROM aluno WHERE email = ? AND password = ?");
+    $stmt->bind_param("ss", $User, $senha);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    // Verificar se a conta existe
+    if ($resultado->num_rows <= 0) {
+        echo "<script>alert('As credenciais inseridas estão inválidas... Tente Novamente!!!'); window.location.href = 'login.html';</script>";
+    } else {
+        StatusUpdate($User);
+        $_SESSION["autenticacao"] = true;
+        $_SESSION["user_email"] = $User;  // Corrigi a sessão para armazenar o email do usuário corretamente
+        $url = "index.php";
+        header("Location: " . $url);
+        exit();  // Adicionar exit após header para garantir que o script pare de executar
+    }
+
+    // Fechar a conexão
+    $stmt->close();
+    $conn->close();
 }
 
-// Fechar a conexão
-$stmt->close();
-$conn->close();
 
 function StatusUpdate($User) {
     // Mudar status para Online

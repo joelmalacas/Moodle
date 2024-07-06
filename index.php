@@ -69,8 +69,6 @@
             }
         ?>
     </main>
-    
-    <script src="../Moodle/Scripts/index.js"></script>
 </body>
 </html>
 
