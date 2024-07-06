@@ -26,7 +26,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             <ul>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Cria Curso" id="Pprincipal" class="active"><i class="fa-solid fa-plus"></i> Criar Curso</button>
+                        <button type="submit" name="CriaCurso" id="Pprincipal" class="active"><i class="fa-solid fa-plus"></i> Criar Curso</button>
                     </form>
                 </li>
                 <li>
@@ -36,32 +36,32 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Cria Curso" id="Pprincipal" class="active"><i class="fa-solid fa-pen-to-square"></i> Editar Curso</button>
+                        <button type="submit" name="EditCurso" id="Pprincipal" class="active"><i class="fa-solid fa-pen-to-square"></i> Editar Curso</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="CriaDisciplina" id="Perfil"><i class="fa-solid fa-pen-to-square"></i> Editar disciplina</button>
+                        <button type="submit" name="EditDisciplina" id="Perfil"><i class="fa-solid fa-pen-to-square"></i> Editar disciplina</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="CriaDisciplina" id="Perfil"><i class="fa-solid fa-minus"></i> Remover curso</button>
+                        <button type="submit" name="RemCurso" id="Perfil"><i class="fa-solid fa-minus"></i> Remover curso</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="CriaDisciplina" id="Perfil"><i class="fa-solid fa-minus"></i> Remover disciplina</button>
+                        <button type="submit" name="RemDisciplina" id="Perfil"><i class="fa-solid fa-minus"></i> Remover disciplina</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Disciplina" id="Disciplina"><i class="fas fa-user"></i> Alunos</button>
+                        <button type="submit" name="Alunos" id="Disciplina"><i class="fas fa-user"></i> Alunos</button>
                     </form>
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Disciplina" id="Disciplina"><i class="fa-solid fa-address-card"></i> Inscrições</button>
+                        <button type="submit" name="Inscricoes" id="Disciplina"><i class="fa-solid fa-address-card"></i> Inscrições</button>
                     </form>
                 </li>
                 <li>
