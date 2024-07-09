@@ -130,7 +130,7 @@ function MeuPerfil() {
     }
 
     // Consulta segura usando prepared statement
-    $sql = "SELECT name, email, phone, Data_criacao FROM aluno WHERE email = ?";
+    $sql = "SELECT nome, email, telemovel, DataConta FROM aluno WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $_SESSION["user_email"]);
     $stmt->execute();
