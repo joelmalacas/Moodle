@@ -40,12 +40,12 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             </li>
             <li>
                 <form method="POST" action="">
-                    <button type="submit" name="AddProfessor" id="Inscricoes"><i class="fa-solid fa-plus"></i> Professor</button>
+                    <button type="submit" name="AddProfessor" id="AddProfessor"><i class="fa-solid fa-plus"></i> Professor</button>
                 </form>
             </li>
             <li>
                 <form method="POST" action="">
-                    <button type="submit" name="RemProfessor" id="Inscricoes"><i class="fa-solid fa-minus"></i> Professor</button>
+                    <button type="submit" name="RemProfessor" id="RemProfessor"><i class="fa-solid fa-minus"></i> Professor</button>
                 </form>
             </li>
             <li>
@@ -95,16 +95,19 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
 
             if (isset($_POST['Alunos'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const Alunos = document.getElementById("Alunos"); Alunos.classList.add("active");</script>';
 
             }
 
             if (isset($_POST['Inscricoes'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>Inscricoes = document.getElementById("Inscricoes"); Inscricoes.classList.add("active");</script>';
 
             }
 
             if (isset($_POST['AddProfessor'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const AddProfessor = document.getElementById("AddProfessor"); AddProfessor.classList.add("active");</script>';
                 print '
                     <div class="form-container">
                     <form method="post">
@@ -133,6 +136,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
 
             if (isset($_POST['RemProfessor'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const RemProfessor = document.getElementById("RemProfessor"); RemProfessor.classList.add("active");</script>';
                 print '
                     <div class="form-container">
                     <form method="post">
@@ -149,31 +153,43 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
 
             if (isset($_POST['CriaCurso'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const CriaCurso = document.getElementById("CriaCurso"); CriaCurso.classList.add("active");</script>';
+
 
             }
 
             if (isset($_POST['CriaDisciplina'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const CriaDisciplina = document.getElementById("CriaDisciplina"); CriaDisciplina.classList.add("active");</script>';
+
 
             }
 
             if (isset($_POST['EditCurso'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const EditCurso = document.getElementById("EditCurso"); EditCurso.classList.add("active");</script>';
+
 
             }
 
             if (isset($_POST['EditDisciplina'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const EditDisciplina = document.getElementById("EditDisciplina"); EditDisciplina.classList.add("active");</script>';
+
 
             }
 
             if (isset($_POST['RemCurso'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const RemCurso = document.getElementById("RemCurso"); RemCurso.classList.add("active");</script>';
+
 
             }
 
             if (isset($_POST['RemDisciplina'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '<script>const RemDisciplina = document.getElementById("RemDisciplina"); RemDisciplina.classList.add("active");</script>';
+
 
             }
         ?>
