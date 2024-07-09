@@ -1,7 +1,7 @@
 CREATE TABLE aluno (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
-    email VARCHAR(50) UNIQUE,
+    email VARCHAR(50),
     passe VARCHAR(20),
     telemovel VARCHAR(15),
     morada VARCHAR(50),
@@ -21,21 +21,11 @@ CREATE TABLE aluno (
     estado VARCHAR(10)
 );
 
-CREATE TABLE professor (
-    id INT AUTO_INCREMENT,
-    email VARCHAR(50) NOT NULL UNIQUE,
-    nome VARCHAR(100) NOT NULL,
-    especialidade VARCHAR(50),
-    PRIMARY KEY (id, email)
-);
-
 CREATE TABLE cursos (
     id INT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     preco MONEY,
-    descricao TEXT,
-    professor_email VARCHAR(50),
-    FOREIGN KEY (professor_email) REFERENCES professor(email) ON DELETE SET NULL
+    descricao TEXT
 );
 
 CREATE TABLE disciplinas (
@@ -43,63 +33,59 @@ CREATE TABLE disciplinas (
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
     curso_id INT NOT NULL,
-    professor_email VARCHAR(50),
-    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE,
-    FOREIGN KEY (professor_email) REFERENCES professor(email) ON DELETE SET NULL
+    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE inscricoes (
     id INT PRIMARY KEY,
     curso_id INT NOT NULL,
-    aluno_email VARCHAR(50) NOT NULL,
+    aluno_id INT NOT NULL,
     pagamento VARCHAR(100),
     Data_Inscricao DATE,
     FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE,
-    FOREIGN KEY (aluno_email) REFERENCES aluno(email) ON DELETE CASCADE
+    FOREIGN KEY (aluno_id) REFERENCES aluno(id) ON DELETE CASCADE
 );
 
 CREATE TABLE notas (
     id INT PRIMARY KEY,
     disciplina_id INT NOT NULL,
-    aluno_email VARCHAR(50) NOT NULL,
+    aluno_id INT NOT NULL,
     nota DECIMAL(4, 2) NOT NULL,
     FOREIGN KEY (disciplina_id) REFERENCES disciplinas(id) ON DELETE CASCADE,
-    FOREIGN KEY (aluno_email) REFERENCES aluno(email) ON DELETE CASCADE
+    FOREIGN KEY (aluno_id) REFERENCES aluno(id) ON DELETE CASCADE
 );
 
-//Inserts
 
--- Inserir professores
-INSERT INTO professor (email, nome, especialidade) VALUES ('prof.jose@example.com', 'José da Silva', 'Engenharia de Software');
-INSERT INTO professor (email, nome, especialidade) VALUES ('prof.maria@example.com', 'Maria de Souza', 'Ciência da Computação');
+//Inserts 
 
--- Inserir cursos com professores
-INSERT INTO cursos (id, nome, preco, descricao, professor_email) VALUES (1, 'Engenharia de Software', 2000.00, 'Curso de Engenharia de Software', 'prof.jose@example.com');
-INSERT INTO cursos (id, nome, preco, descricao, professor_email) VALUES (2, 'Ciência da Computação', 2500.00, 'Curso de Ciência da Computação', 'prof.maria@example.com');
+-- Inserir cursos
+INSERT INTO cursos (nome, descricao) VALUES ('Engenharia de Software', 'Curso de Engenharia de Software');
+INSERT INTO cursos (nome, descricao) VALUES ('Ciência da Computação', 'Curso de Ciência da Computação');
 
--- Inserir disciplinas com professores
-INSERT INTO disciplinas (id, nome, descricao, curso_id, professor_email) VALUES (1, 'Algoritmos', 'Disciplina de Algoritmos', 1, 'prof.jose@example.com');
-INSERT INTO disciplinas (id, nome, descricao, curso_id, professor_email) VALUES (2, 'Banco de Dados', 'Disciplina de Banco de Dados', 1, 'prof.jose@example.com');
-INSERT INTO disciplinas (id, nome, descricao, curso_id, professor_email) VALUES (3, 'Programação', 'Disciplina de Programação', 2, 'prof.maria@example.com');
+-- Inserir disciplinas
+INSERT INTO disciplinas (nome, descricao, curso_id) VALUES ('Algoritmos', 'Disciplina de Algoritmos', 1);
+INSERT INTO disciplinas (nome, descricao, curso_id) VALUES ('Banco de Dados', 'Disciplina de Banco de Dados', 1);
+INSERT INTO disciplinas (nome, descricao, curso_id) VALUES ('Programação', 'Disciplina de Programação', 2);
 
 -- Inserir alunos
 INSERT INTO aluno (nome, email) VALUES ('João Silva', 'joao.silva@example.com');
 INSERT INTO aluno (nome, email) VALUES ('Maria Souza', 'maria.souza@example.com');
 
 -- Inserir inscrições
-INSERT INTO inscricoes (id, curso_id, aluno_email, pagamento, Data_Inscricao) VALUES (1, 1, 'joao.silva@example.com', 'Pago', '2024-07-01');
-INSERT INTO inscricoes (id, curso_id, aluno_email, pagamento, Data_Inscricao) VALUES (2, 2, 'maria.souza@example.com', 'Pago', '2024-07-01');
+INSERT INTO inscricoes (curso_id, aluno_id) VALUES (1, 1);
+INSERT INTO inscricoes (curso_id, aluno_id) VALUES (2, 2);
 
 -- Inserir notas
-INSERT INTO notas (id, disciplina_id, aluno_email, nota) VALUES (1, 1, 'joao.silva@example.com', 8.5);
-INSERT INTO notas (id, disciplina_id, aluno_email, nota) VALUES (2, 2, 'joao.silva@example.com', 9.0);
-INSERT INTO notas (id, disciplina_id, aluno_email, nota) VALUES (3, 3, 'maria.souza@example.com', 7.5);
+INSERT INTO notas (disciplina_id, aluno_id, nota) VALUES (1, 1, 8.5);
+INSERT INTO notas (disciplina_id, aluno_id, nota) VALUES (2, 1, 9.0);
+INSERT INTO notas (disciplina_id, aluno_id, nota) VALUES (3, 2, 7.5);
 
-// Consulta para Mostrar Alunos Inscritos em um Curso e Suas Notas
+
+Consultas para Mostrar Alunos Inscritos em um Curso e Suas Notas
 
 SELECT a.nome, a.email, d.nome AS disciplina, n.nota
 FROM aluno a
-JOIN inscricoes i ON a.email = i.aluno_email
+JOIN inscricoes i ON a.id = i.aluno_id
 JOIN disciplinas d ON i.curso_id = d.curso_id
-JOIN notas n ON a.email = n.aluno_email AND d.id = n.disciplina_id
+JOIN notas n ON a.id = n.aluno_id AND d.id = n.disciplina_id
 WHERE i.curso_id = 1;  -- Substitua 1 pelo ID do curso desejado

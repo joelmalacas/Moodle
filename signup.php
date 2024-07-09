@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST['address'];
     $postalcode = $_POST['postalcode'];
     $birthdate = $_POST['birthdate'];
-    $nacionalidade = $_POST['nacionalidades']; // alterei para singular "nacionalidade"
+    $nacionalidade = $_POST['nacionalidades'];
     $birthplace = $_POST['birthplace'];
     $gender = $_POST['gender'];
     $transporte = $_POST['transporte'];
@@ -18,78 +18,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $habilitacao = $_POST['habilitacao'];
     $employee = $_POST['employee'];
     $employer = isset($_POST['employer']) ? $_POST['employer'] : '';
-    $status = 'Offline'; // definido manualmente como 'Ativo'
-    $data_criacao = date('Y-m-d'); // data atual
+    $status = 'Offline';
+    $data_criacao = date('Y-m-d');
 
-    // Configurações de conexão com o banco de dados (exemplo)
+    // Conexão com o banco de dados
     $servername = "localhost";
     $username = "root";
     $password_db = "";
-    $dbname = "moodle_accounts";
+    $database = "moodle_accounts";
 
-    // Conexão com o banco de dados utilizando PDO
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password_db);
-        // Configura o PDO para lançar exceções em caso de erros
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = new mysqli($servername, $username, $password_db, $database);
 
-        // Prepara a query SQL usando prepared statements
-        $stmt = $conn->prepare("INSERT INTO aluno 
-                                (name, email, password, phone, address, postalcode, birthdate, nacionalidade, birthplace, gender, transporte, idnumber, taxnumber, habilitacao, employee, employer, status, Data_criacao) 
-                                VALUES 
-                                (:name, :email, :password, :phone, :address, :postalcode, :birthdate, :nacionalidade, :birthplace, :gender, :transporte, :idnumber, :taxnumber, :habilitacao, :employee, :employer, :status, :data_criacao)");
-
-        // Bind dos parâmetros
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':phone', $phone);
-        $stmt->bindParam(':address', $address);
-        $stmt->bindParam(':postalcode', $postalcode);
-        $stmt->bindParam(':birthdate', $birthdate);
-        $stmt->bindParam(':nacionalidade', $nacionalidade);
-        $stmt->bindParam(':birthplace', $birthplace);
-        $stmt->bindParam(':gender', $gender);
-        $stmt->bindParam(':transporte', $transporte);
-        $stmt->bindParam(':idnumber', $idnumber);
-        $stmt->bindParam(':taxnumber', $taxnumber);
-        $stmt->bindParam(':habilitacao', $habilitacao);
-        $stmt->bindParam(':employee', $employee);
-        $stmt->bindParam(':employer', $employer);
-        $stmt->bindParam(':status', $status);
-        $stmt->bindParam(':data_criacao', $data_criacao);
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "moodle_accounts";
-    
-        $conn = mysqli_connect($servername, $username, $password, $database);
-    
-        if ($conn == false){
-            echo "Error Trying Connect to Database Server\n";
-            print "<script>console.log('Error Trying Connect to Database Server\n')</script>;";
-        }
-
-       $verifica = "SELECT * from aluno WHERE email = ". $email .";";
-       $sql = mysqli_query($conn, $verifica) or die ("Erro: Base de dados");
-
-        if (mysqli_num_rows($sql) == 0) {
-             // Executa a query
-            $stmt->execute();
-       } else {
-            mysqli_close($conn);
-            print '<script>alert("Já existe conta com este endereço e-mail");</script>';
-            print '<script>window.location.href="index.php";</script>';
-       }
-
-       print '<script>alert("Registo efetuado com sucesso!!!");</script>';
-       print '<script>window.location.href="../Moodle/login.html";</script>';
-    } catch(PDOException $e) {
-        echo "Erro ao inserir o registo no banco de dados: " . $e->getMessage();
+    if ($conn->connect_error) {
+        die("Erro na conexão com o banco de dados: " . $conn->connect_error);
     }
 
-    // Fecha a conexão com o banco de dados
-    $conn = null;
+    $stmt = $conn->prepare("SELECT * FROM aluno WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows == 0) {
+        $stmt = $conn->prepare("INSERT INTO aluno (nome, email, passe, telemovel, morada, codPostal, DataNascimento, nacionalidade, naturalidade, genero, PortadorDocumento, NumeroDocumento, contribuinte, habilitacao, situacao_profissional, Empresa, estado, DataConta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssssssssssssss", $name, $email, $password, $phone, $address, $postalcode, $birthdate, $nacionalidade, $birthplace, $gender, $transporte, $idnumber, $taxnumber, $habilitacao, $employee, $employer, $status, $data_criacao);
+
+        if ($stmt->execute()) {
+            echo '<script>alert("Registo efetuado com sucesso!!!");</script>';
+            echo '<script>window.location.href="../Moodle/login.html";</script>';
+        } else {
+            echo "Erro ao inserir o registo no banco de dados: " . $stmt->error;
+        }
+    } else {
+        echo '<script>alert("Já existe conta com este endereço e-mail");</script>';
+        echo '<script>window.location.href="index.php";</script>';
+    }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
