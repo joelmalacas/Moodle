@@ -94,43 +94,76 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             }
 
             if (isset($_POST['Alunos'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
 
             if (isset($_POST['Inscricoes'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
 
             if (isset($_POST['AddProfessor'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '
+                    <div class="form-container">
+                    <form method="post">
+                        <h2 class="TituloFORM">Adicionar Professor</h2>
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Especialidade:</label>
+                            <input type="text" id="especialidade" name="especialidade">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Foto:</label>
+                            <input type="file" id="foto" name="foto">
+                        </div>
+                        <button type="submit" name="Criar">Adicionar</button>
+                    </form>
+                </div>
+                ';
             }
 
             if (isset($_POST['RemProfessor'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+                print '';
             }
 
             if (isset($_POST['CriaCurso'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
 
             if (isset($_POST['CriaDisciplina'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
 
             if (isset($_POST['EditCurso'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
 
             if (isset($_POST['EditDisciplina'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
 
             if (isset($_POST['RemCurso'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
 
             if (isset($_POST['RemDisciplina'])) {
-                
+                print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
+
             }
         ?>
     </main>
