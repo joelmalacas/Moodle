@@ -92,6 +92,46 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                 $_SESSION['LogAdmin'] = false;
                 header('location:' . "http://localhost/Moodle/index.php");
             }
+
+            if (isset($_POST['Alunos'])) {
+                
+            }
+
+            if (isset($_POST['Inscricoes'])) {
+                
+            }
+
+            if (isset($_POST['AddProfessor'])) {
+                
+            }
+
+            if (isset($_POST['RemProfessor'])) {
+                
+            }
+
+            if (isset($_POST['CriaCurso'])) {
+                
+            }
+
+            if (isset($_POST['CriaDisciplina'])) {
+                
+            }
+
+            if (isset($_POST['EditCurso'])) {
+                
+            }
+
+            if (isset($_POST['EditDisciplina'])) {
+                
+            }
+
+            if (isset($_POST['RemCurso'])) {
+                
+            }
+
+            if (isset($_POST['RemDisciplina'])) {
+                
+            }
         ?>
     </main>
 </body>
