@@ -90,7 +90,7 @@ function StatusUpdate($User) {
         die("Erro na conexão: " . $conn->connect_error);
     }
 
-    $query = "UPDATE aluno SET status = ? WHERE email = ?";
+    $query = "UPDATE aluno SET estado = ? WHERE email = ?";
 
     // Prepara a query
     if ($stmt = $conn->prepare($query)) {

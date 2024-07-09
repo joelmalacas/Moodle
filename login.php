@@ -27,7 +27,7 @@ if ($User == $defaultUserAdmin && $senha == $defaultPassAdmin) {
     header('location:' . "../Moodle/Administrador/index.php");
 } else {
     // Preparar a consulta SQL usando consultas preparadas
-    $stmt = $conn->prepare("SELECT * FROM aluno WHERE email = ? AND password = ?");
+    $stmt = $conn->prepare("SELECT * FROM aluno WHERE email = ? AND passe = ?");
     $stmt->bind_param("ss", $User, $senha);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -66,7 +66,7 @@ function StatusUpdate($User) {
         die("Erro na conexão: " . $conn->connect_error);
     }
 
-    $query = "UPDATE aluno SET status = ? WHERE email = ?";
+    $query = "UPDATE aluno SET estado = ? WHERE email = ?";
 
     // Prepara a query
     if ($stmt = $conn->prepare($query)) {
