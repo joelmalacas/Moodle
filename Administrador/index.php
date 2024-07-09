@@ -133,7 +133,18 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
 
             if (isset($_POST['RemProfessor'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
-                print '';
+                print '
+                    <div class="form-container">
+                    <form method="post">
+                        <h2 class="TituloFORM">Remover Professor</h2>
+                        <div class="form-group">
+                            <label for="name">E-mail:</label>
+                            <input type="text" id="RemEmail" name="RemEmail" placeholder="Introduza o enderço e-mail para remover">
+                        </div>
+                        <button type="submit" name="RemProf">Remover</button>
+                    </form>
+                </div>
+                ';
             }
 
             if (isset($_POST['CriaCurso'])) {
