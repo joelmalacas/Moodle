@@ -40,6 +40,16 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             </li>
             <li>
                 <form method="POST" action="">
+                    <button type="submit" name="AddProfessor" id="Inscricoes"><i class="fa-solid fa-plus"></i> Professor</button>
+                </form>
+            </li>
+            <li>
+                <form method="POST" action="">
+                    <button type="submit" name="RemProfessor" id="Inscricoes"><i class="fa-solid fa-minus"></i> Professor</button>
+                </form>
+            </li>
+            <li>
+                <form method="POST" action="">
                     <button type="submit" name="CriaCurso" id="CriaCurso"><i class="fa-solid fa-plus"></i> Criar Curso</button>
                 </form>
             </li>
