@@ -164,7 +164,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                 }
                 
                 // Display total count of students
-                echo "<p>Total: " . $contagem . " alunos</p>";
+                echo "<h4>Total: " . $contagem . " alunos</h4>";
                 
                 // Close connection
                 $conn->close();
@@ -244,7 +244,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Adicionar E-mail do professor à disciplina">
+                            <input type="email" id="email" name="email" placeholder="Adicionar E-mail do professor ao curso">
                         </div>
                         <button type="submit" name="Criar">Adicionar</button>
                     </form>
