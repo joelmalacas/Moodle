@@ -97,6 +97,54 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
                 print '<script>const Alunos = document.getElementById("Alunos"); Alunos.classList.add("active");</script>';
 
+                print '
+                    <div class="form-container">
+                    <div class="search-container">
+                        <input type="text" id="search" placeholder="Pesquisar alunos..." onkeyup="searchTable()">
+                        <button type="button" id="searchButton"><i class="fas fa-search"></i></button>
+                    </div>
+                        <h1>Lista de Alunos</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Telemóvel</th>
+                                    <th>Número Documento</th>
+                                    <th>estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                ';
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $database = "moodle_accounts";
+            
+                $conn = mysqli_connect($servername, $username, $password, $database);
+
+                // Buscar alunos
+                $sql = "SELECT * FROM aluno";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    // Exibir dados de cada aluno
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["id"] . "</td>";
+                        echo "<td>" . $row["nome"] . "</td>";
+                        echo "<td>" . $row["email"] . "</td>";
+                        echo "<td>" . $row["telemovel"] . "</td>";
+                        echo "<td>" . $row["NumeroDocumento"] . "</td>";
+                        echo "<td>" . $row["estado"] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>Nenhum aluno encontrado</td></tr>";
+                }
+                $conn->close();
+                print '</div>';
             }
 
             if (isset($_POST['Inscricoes'])) {
@@ -228,17 +276,62 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             if (isset($_POST['RemCurso'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
                 print '<script>const RemCurso = document.getElementById("RemCurso"); RemCurso.classList.add("active");</script>';
-
+                print '
+                    <div class="form-container">
+                    <form method="post">
+                        <h2 class="TituloFORM">Remover Curso</h2>
+                        <div class="form-group">
+                            <label for="name">Nome Curso:</label>
+                            <input type="text" id="RemCurso" name="RemCurso" placeholder="Introduza o nome do curso a remover">
+                        </div>
+                        <button type="submit" name="RemProf">Remover</button>
+                    </form>
+                </div>
+                ';
 
             }
 
             if (isset($_POST['RemDisciplina'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
                 print '<script>const RemDisciplina = document.getElementById("RemDisciplina"); RemDisciplina.classList.add("active");</script>';
-
+                print '
+                    <div class="form-container">
+                    <form method="post">
+                        <h2 class="TituloFORM">Remover Disciplina</h2>
+                        <div class="form-group">
+                            <label for="name">Nome Disciplina:</label>
+                            <input type="text" id="RemDiscipina" name="RemDiscipina" placeholder="Introduza a disciplina a remover">
+                        </div>
+                        <button type="submit" name="RemProf">Remover</button>
+                    </form>
+                </div>
+                ';
 
             }
         ?>
     </main>
+
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("studentsTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
