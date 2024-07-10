@@ -100,7 +100,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                 print '
                     <div class="form-container">
                     <div class="search-container">
-                        <input type="text" id="search" placeholder="Pesquisar alunos..." onkeyup="searchTable()">
+                        <input type="text" id="search" placeholder="Pesquisar alunos...">
                         <button type="button" id="searchButton"><i class="fas fa-search"></i></button>
                     </div>
                         <h1>Lista de Alunos</h1>
@@ -112,6 +112,9 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                                     <th>Email</th>
                                     <th>Telemóvel</th>
                                     <th>Número Documento</th>
+                                    <th>Data Conta</th>
+                                    <th>Nacionalidade</th>
+                                    <th>Género</th>
                                     <th>estado</th>
                                 </tr>
                             </thead>
@@ -122,27 +125,48 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                 $username = "root";
                 $password = "";
                 $database = "moodle_accounts";
-            
-                $conn = mysqli_connect($servername, $username, $password, $database);
-
-                // Buscar alunos
+                
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $database);
+                
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                
+                // Fetch students
                 $sql = "SELECT * FROM aluno";
                 $result = $conn->query($sql);
+                
+                // Count students
+                $count = "SELECT COUNT(*) as Contagem FROM aluno";
+                $count_result = $conn->query($count);
+                $count_row = $count_result->fetch_assoc();
+                $contagem = $count_row['Contagem'];
+                
+                // Display students
                 if ($result->num_rows > 0) {
-                    // Exibir dados de cada aluno
-                    while($row = $result->fetch_assoc()) {
+                    while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $row["id"] . "</td>";
                         echo "<td>" . $row["nome"] . "</td>";
                         echo "<td>" . $row["email"] . "</td>";
                         echo "<td>" . $row["telemovel"] . "</td>";
                         echo "<td>" . $row["NumeroDocumento"] . "</td>";
+                        echo "<td>" . $row["DataConta"] . "</td>";
+                        echo "<td>" . $row["nacionalidade"] . "</td>";
+                        echo "<td>" . $row["genero"] . "</td>";
                         echo "<td>" . $row["estado"] . "</td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='4'>Nenhum aluno encontrado</td></tr>";
+                    echo "<tr><td colspan='9'>Nenhum aluno encontrado</td></tr>";
                 }
+                
+                // Display total count of students
+                echo "<p>Total: " . $contagem . " alunos</p>";
+                
+                // Close connection
                 $conn->close();
                 print '</div>';
             }
@@ -310,28 +334,5 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             }
         ?>
     </main>
-
-    <script>
-        function searchTable() {
-            var input, filter, table, tr, td, i, j, txtValue;
-            input = document.getElementById("search");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("studentsTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 1; i < tr.length; i++) {
-                tr[i].style.display = "none";
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j]) {
-                        txtValue = td[j].textContent || td[j].innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 </body>
 </html>
