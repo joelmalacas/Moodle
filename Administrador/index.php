@@ -154,14 +154,60 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             if (isset($_POST['CriaCurso'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
                 print '<script>const CriaCurso = document.getElementById("CriaCurso"); CriaCurso.classList.add("active");</script>';
-
+                print '
+                    <div class="form-container">
+                    <form method="post">
+                        <h2 class="TituloFORM">Adicionar Curso</h2>
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" name="name" placeholder="Nome do Curso">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Preço:</label>
+                            <input type="number" id="preco" name="preco" placeholder="Adicionar preço do curso">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Descrição:</label>
+                            <input type="text" id="Descricao" name="Descricao" placeholder="Adiciona uma discrição">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Adicionar E-mail do professor à disciplina">
+                        </div>
+                        <button type="submit" name="Criar">Adicionar</button>
+                    </form>
+                </div>
+                ';
 
             }
 
             if (isset($_POST['CriaDisciplina'])) {
                 print '<script>const mainContent = document.querySelector(".main-content"); mainContent.innerHTML = ""</script>';
                 print '<script>const CriaDisciplina = document.getElementById("CriaDisciplina"); CriaDisciplina.classList.add("active");</script>';
-
+                print '
+                    <div class="form-container">
+                    <form method="post">
+                        <h2 class="TituloFORM">Adicionar Disciplina</h2>
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" name="name" placeholder="Nome da Disciplina">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Descrição:</label>
+                            <input type="text" id="descricao" name="descricao" placeholder="Adicionar descrição">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Curso:</label>
+                            <input type="text" id="Curso" name="Curso" placeholder="Adiciona o curso para adicionar a disciplina ao mesmo">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Adicionar E-mail do professor à disciplina">
+                        </div>
+                        <button type="submit" name="Criar">Adicionar</button>
+                    </form>
+                </div>
+                ';
 
             }
 
