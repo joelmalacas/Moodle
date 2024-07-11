@@ -31,7 +31,7 @@ CREATE TABLE aluno (
 -- Criação da tabela professor
 CREATE TABLE professor (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(50),
+    email VARCHAR(50) UNIQUE PRIMARY KEY,
     nome VARCHAR(100),
     especialidade VARCHAR(50)
 );
@@ -41,9 +41,16 @@ CREATE TABLE cursos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     preco DECIMAL(10,2),
-    descricao TEXT,
+    descricao TEXT
+);
+
+-- Criação da tabela professor_cursos
+CREATE TABLE professor_cursos (
     professor_email VARCHAR(50),
-    FOREIGN KEY (professor_email) REFERENCES professor(email)
+    curso_id INT,
+    PRIMARY KEY (professor_email, curso_id),
+    FOREIGN KEY (professor_email) REFERENCES professor(email),
+    FOREIGN KEY (curso_id) REFERENCES cursos(id)
 );
 
 -- Criação da tabela disciplinas
@@ -52,9 +59,16 @@ CREATE TABLE disciplinas (
     nome VARCHAR(100),
     descricao TEXT,
     curso_id INT,
+    FOREIGN KEY (curso_id) REFERENCES cursos(id)
+);
+
+-- Criação da tabela professor_disciplinas
+CREATE TABLE professor_disciplinas (
     professor_email VARCHAR(50),
-    FOREIGN KEY (curso_id) REFERENCES cursos(id),
-    FOREIGN KEY (professor_email) REFERENCES professor(email)
+    disciplina_id INT,
+    PRIMARY KEY (professor_email, disciplina_id),
+    FOREIGN KEY (professor_email) REFERENCES professor(email),
+    FOREIGN KEY (disciplina_id) REFERENCES disciplinas(id)
 );
 
 -- Criação da tabela inscricoes
@@ -91,25 +105,37 @@ VALUES
 ('prof.ana@email.com', 'Ana Costa', 'História');
 
 -- Inserção de dados na tabela cursos
-INSERT INTO cursos (nome, preco, descricao, professor_email)
+INSERT INTO cursos (nome, preco, descricao)
 VALUES
-('Curso de Matemática', 250.00, 'Curso completo de matemática básica e avançada', 'prof.jose@email.com'),
-('Curso de História', 200.00, 'Curso de história mundial', 'prof.ana@email.com');
+('Curso de Matemática', 250.00, 'Curso completo de matemática básica e avançada'),
+('Curso de História', 200.00, 'Curso de história mundial');
+
+-- Associação de professores aos cursos
+INSERT INTO professor_cursos (professor_email, curso_id)
+VALUES
+('prof.jose@email.com', (SELECT id FROM cursos WHERE nome='Curso de Matemática')),
+('prof.ana@email.com', (SELECT id FROM cursos WHERE nome='Curso de História'));
 
 -- Inserção de dados na tabela disciplinas
-INSERT INTO disciplinas (nome, descricao, curso_id, professor_email)
+INSERT INTO disciplinas (nome, descricao, curso_id)
 VALUES
-('Matemática Básica', 'Introdução à matemática', 1, 'prof.jose@email.com'),
-('História Antiga', 'Estudo das civilizações antigas', 2, 'prof.ana@email.com');
+('Matemática Básica', 'Introdução à matemática', (SELECT id FROM cursos WHERE nome='Curso de Matemática')),
+('História Antiga', 'Estudo das civilizações antigas', (SELECT id FROM cursos WHERE nome='Curso de História'));
+
+-- Associação de professores às disciplinas
+INSERT INTO professor_disciplinas (professor_email, disciplina_id)
+VALUES
+('prof.jose@email.com', (SELECT id FROM disciplinas WHERE nome='Matemática Básica')),
+('prof.ana@email.com', (SELECT id FROM disciplinas WHERE nome='História Antiga'));
 
 -- Inserção de dados na tabela inscricoes
 INSERT INTO inscricoes (curso_id, aluno_email, pagamento, Data_Inscricao)
 VALUES
-(1, 'joao.silva@email.com', 'Pago', '2023-03-01'),
-(2, 'maria.santos@email.com', 'Pago', '2023-04-01');
+((SELECT id FROM cursos WHERE nome='Curso de Matemática'), 'joao.silva@email.com', 'Pago', '2023-03-01'),
+((SELECT id FROM cursos WHERE nome='Curso de História'), 'maria.santos@email.com', 'Pago', '2023-04-01');
 
 -- Inserção de dados na tabela notas
 INSERT INTO notas (disciplina_id, aluno_email, nota)
 VALUES
-(1, 'joao.silva@email.com', 15.50),
-(2, 'maria.santos@email.com', 18.00);
+((SELECT id FROM disciplinas WHERE nome='Matemática Básica'), 'joao.silva@email.com', 15.50),
+((SELECT id FROM disciplinas WHERE nome='História Antiga'), 'maria.santos@email.com', 18.00);
