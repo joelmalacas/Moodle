@@ -111,6 +111,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                                     <th>Nome</th>
                                     <th>Email</th>
                                     <th>Telemóvel</th>
+                                    <th>Tipo Documento</th>
                                     <th>Número Documento</th>
                                     <th>Data Conta</th>
                                     <th>Nacionalidade</th>
@@ -152,6 +153,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                         echo "<td>" . $row["nome"] . "</td>";
                         echo "<td>" . $row["email"] . "</td>";
                         echo "<td>" . $row["telemovel"] . "</td>";
+                        echo "<td>" . $row["PortadorDocumento"] . "</td>";
                         echo "<td>" . $row["NumeroDocumento"] . "</td>";
                         echo "<td>" . $row["DataConta"] . "</td>";
                         echo "<td>" . $row["nacionalidade"] . "</td>";
@@ -239,12 +241,17 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                             <input type="number" id="preco" name="preco" placeholder="Adicionar preço do curso">
                         </div>
                         <div class="form-group">
-                            <label for="subject">Descrição:</label>
-                            <input type="text" id="Descricao" name="Descricao" placeholder="Adiciona uma discrição">
-                        </div>
-                        <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" placeholder="Adicionar E-mail do professor ao curso">
+                        </div>
+                        <div class="form-group">
+                            <label for="Foto">Adicionar fotografia:</label>
+                            <input type="file" id="fileCurso" name="fileCurso">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Descrição:</label>
+                            <br>
+                            <textarea id="descricao" name="descricaoCurso" placeholder="Adicionar descrição"></textarea>
                         </div>
                         <button type="submit" name="Criar">Adicionar</button>
                     </form>
@@ -265,16 +272,21 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                             <input type="text" id="name" name="name" placeholder="Nome da Disciplina">
                         </div>
                         <div class="form-group">
-                            <label for="subject">Descrição:</label>
-                            <input type="text" id="descricao" name="descricao" placeholder="Adicionar descrição">
-                        </div>
-                        <div class="form-group">
                             <label for="subject">Curso:</label>
                             <input type="text" id="Curso" name="Curso" placeholder="Adiciona o curso para adicionar a disciplina ao mesmo">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" placeholder="Adicionar E-mail do professor à disciplina">
+                        </div>
+                        <div class="form-group">
+                            <label for="Foto">Adicionar fotografia:</label>
+                            <input type="file" id="fileDisciplina" name="fileDisciplina">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Descrição:</label>
+                            <br>
+                            <textarea id="descricao" name="descricao" placeholder="Adicionar descrição"></textarea>
                         </div>
                         <button type="submit" name="Criar">Adicionar</button>
                     </form>
