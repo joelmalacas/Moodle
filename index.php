@@ -35,7 +35,7 @@
                 </li>
                 <li>
                     <form method="POST" action="">
-                        <button type="submit" name="Disciplina" id="Disciplina"><i class="fa-solid fa-book"></i> Minhas Disciplinas</button>
+                        <button type="submit" name="Disciplina" id="Disciplina"><i class="fa-solid fa-book"></i> Módulos</button>
                     </form>
                 </li>
                 <li>
@@ -226,9 +226,9 @@ function Disciplinas() {
     $resultado = mysqli_query($conn,$sql);
 
     if (mysqli_num_rows($resultado) == 0){
-        print '<h1>Não tens Disciplinas</h1>';
+        print '<h1>Não tens Módulos</h1>';
     } else {
-        print '<h1>As minhas Disciplinas</h1>';
+        print '<h1>Os meus Módulos</h1>';
     }
 
     mysqli_close($conn);
