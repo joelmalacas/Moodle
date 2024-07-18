@@ -45,17 +45,12 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             </li>
             <li>
                 <form method="POST" action="">
-                    <button type="submit" name="RemProfessor" id="RemProfessor"><i class="fa-solid fa-minus"></i> Professor</button>
+                    <button type="submit" name="CriaCurso" id="CriaCurso"><i class="fa-solid fa-plus"></i> Curso</button>
                 </form>
             </li>
             <li>
                 <form method="POST" action="">
-                    <button type="submit" name="CriaCurso" id="CriaCurso"><i class="fa-solid fa-plus"></i> Criar Curso</button>
-                </form>
-            </li>
-            <li>
-                <form method="POST" action="">
-                    <button type="submit" name="CriaDisciplina" id="CriaDisciplina"><i class="fa-solid fa-plus"></i> Criar disciplina</button>
+                    <button type="submit" name="CriaDisciplina" id="CriaDisciplina"><i class="fa-solid fa-plus"></i> Disciplina</button>
                 </form>
             </li>
             <li>
@@ -70,12 +65,17 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
             </li>
             <li>
                 <form method="POST" action="">
-                    <button type="submit" name="RemCurso" id="RemCurso"><i class="fa-solid fa-minus"></i> Remover curso</button>
+                    <button type="submit" name="RemProfessor" id="RemProfessor"><i class="fa-solid fa-minus"></i> Professor</button>
                 </form>
             </li>
             <li>
                 <form method="POST" action="">
-                    <button type="submit" name="RemDisciplina" id="RemDisciplina"><i class="fa-solid fa-minus"></i> Remover disciplina</button>
+                    <button type="submit" name="RemCurso" id="RemCurso"><i class="fa-solid fa-minus"></i>  Curso</button>
+                </form>
+            </li>
+            <li>
+                <form method="POST" action="">
+                    <button type="submit" name="RemDisciplina" id="RemDisciplina"><i class="fa-solid fa-minus"></i> Disciplina</button>
                 </form>
             </li>
             <li>
