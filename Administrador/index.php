@@ -202,7 +202,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                             <label for="message">Foto:</label>
                             <input type="file" id="foto" name="foto">
                         </div>
-                        <button type="submit" name="Criar">Adicionar</button>
+                        <button type="submit" name="CriarProfessor">Adicionar</button>
                     </form>
                 </div>
                 ';
@@ -253,7 +253,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                             <br>
                             <textarea id="descricao" name="descricaoCurso" placeholder="Adicionar descrição"></textarea>
                         </div>
-                        <button type="submit" name="Criar">Adicionar</button>
+                        <button type="submit" name="CriarCurso">Adicionar</button>
                     </form>
                 </div>
                 ';
@@ -288,7 +288,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                             <br>
                             <textarea id="descricao" name="descricao" placeholder="Adicionar descrição"></textarea>
                         </div>
-                        <button type="submit" name="Criar">Adicionar</button>
+                        <button type="submit" name="CriarDisciplina">Adicionar</button>
                     </form>
                 </div>
                 ';
@@ -320,7 +320,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                             <label for="name">Nome Curso:</label>
                             <input type="text" id="RemCurso" name="RemCurso" placeholder="Introduza o nome do curso a remover">
                         </div>
-                        <button type="submit" name="RemProf">Remover</button>
+                        <button type="submit" name="RemCurso">Remover</button>
                     </form>
                 </div>
                 ';
@@ -338,7 +338,7 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
                             <label for="name">Nome Disciplina:</label>
                             <input type="text" id="RemDiscipina" name="RemDiscipina" placeholder="Introduza a disciplina a remover">
                         </div>
-                        <button type="submit" name="RemProf">Remover</button>
+                        <button type="submit" name="RemDisciplina">Remover</button>
                     </form>
                 </div>
                 ';
@@ -348,3 +348,47 @@ if ($_SESSION['LogAdmin'] == false || $_SESSION['LogAdmin'] == null) {
     </main>
 </body>
 </html>
+
+
+<?php
+
+if (isset($_POST['CriarProfessor'])) {
+    AddProfessor();
+} else if (isset($_POST['RemProf'])) {
+    RemProfessor();
+} else if (isset($_POST['CriarCurso'])){
+    CriarCurso();
+} else if (isset($_POST['CriarDisciplina'])) {
+    CriarDisciplina();
+} else if (isset($_POST['RemCurso'])) {
+    RemCurso();
+} else if (isset($_POST['RemDisciplina'])) {
+    RemDisciplina();
+}
+
+
+function AddProfessor() {
+    //Function para Add o professor
+} 
+
+function RemProfessor() {
+    //Function para Remover Professor
+}
+
+function CriarCurso() {
+    //Function para Criar um Curso
+}
+
+function CriarDisciplina() {
+    //Function para Criar Disciplina
+}
+
+function RemCurso() {
+    //Function para Remover um curso
+}
+
+function RemDisciplina() {
+    //Function para Remover Disciplina
+}
+
+?>
